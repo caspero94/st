@@ -10,15 +10,15 @@ selected = option_menu(
           default_index=0,
           orientation="horizontal",
           styles={
-                "container": {"padding": "0!important", "background-color": "#000000"},
-                "icon": {"color": "black", "font-size": "25px"},
+                "container": {"padding": "0!important", "background-color": "#590000"},
+                "icon": {"color": "white", "font-size": "25px"},
                 "nav-link": {
                     "font-size": "25px",
                     "text-align": "center",
                     "margin": "0px",
                     "--hover-color": "#eee",
                 },
-                "nav-link-selected": {"background-color": "black"},
+                "nav-link-selected": {"background-color": "red"},
             },
      )
 
