@@ -34,7 +34,7 @@ if selected == "Grafico":
           return MongoClient(st.secrets["mg_connect"])
      client = init_connection()
 
-'''
+
      @st.cache_data(ttl=600)
      def get_data():
           db = client["CryptoData"]
@@ -43,8 +43,8 @@ if selected == "Grafico":
           return items
 
      items = get_data()
-     st.write(items)
-
+     st.write(pd.items)
+'''
      fig = go.Figure()
 
      fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
