@@ -31,15 +31,15 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-     
+     st.write(st.secrets["host"])
+     st.write(st.secrets["username"])
+     st.write(st.secrets["password"])
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
 
           
-          st.write(st.secrets["host"])
-          st.write(st.secrets["username"])
-          st.write(st.secrets["password"])
+
           client = MongoClient("mongodb+srv://"+st.secrets["username"]+":"+st.secrets["password"]+st.secrets["host"])
 
 
