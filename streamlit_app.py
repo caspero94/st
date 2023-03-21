@@ -4,9 +4,24 @@ from pymongo import MongoClient
 import pandas as pd
 import plotly.graph_objects as go
 
-client = MongoClient("mongodb+srv://casper:casperKey@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
-db = client["CryptoData"]
-collection = db["BTC/BUSD_1m"]
+@st.cache_resource
+def init_connection():
+    return pymongo.MongoClient(**st.secrets["mongo"])
+
+client = init_connection()
+
+@st.cache_data(ttl=600)
+def get_data():
+     collection = db["BTC/BUSD_1m"]
+     ddb = client["CryptoData"]
+     items = db.collection.find().limit(20)
+     items = list(items)  # make hashable for st.cache_data
+     return items
+
+items = get_data()
+st.write(items)
+
+
 
 # Horizontal menu
 selected = option_menu(
@@ -32,8 +47,6 @@ selected = option_menu(
 
 if selected == "Grafico":
      
-     data_activo = pd.DataFrame(list(collection.find().limit(20)))
-     st.write(data_activo)
      st.title(f"Selecionado {selected}")
 
      '''fig = go.Figure()
