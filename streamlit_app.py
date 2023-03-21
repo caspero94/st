@@ -13,7 +13,7 @@ client = init_connection()
 @st.cache_data(ttl=600)
 def get_data():
      collection = db["BTC/BUSD_1m"]
-     ddb = client["CryptoData"]
+     db = client["CryptoData"]
      items = db.collection.find().limit(20)
      items = list(items)  # make hashable for st.cache_data
      return items
