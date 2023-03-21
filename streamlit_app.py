@@ -31,7 +31,7 @@ if selected == "Grafico":
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
-          return pymongo.MongoClient("mongodb+srv://casper:caspero@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
+          return MongoClient("mongodb+srv://casper:caspero@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
      client = init_connection()
 
 
