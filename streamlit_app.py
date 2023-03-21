@@ -42,9 +42,9 @@ if selected == "Grafico":
 
      @st.cache_data(ttl=600)
      def get_data():
-          collection = db["BTC/BUSD_1m"]
           db = client["CryptoData"]
-          items = db.BTC/BUSD_1m.find().limit(20)
+          collection = db["BTC/BUSD_1m"]
+          items = collection.find().limit(20)
           items = list(items)  # make hashable for st.cache_data
           return items
 
