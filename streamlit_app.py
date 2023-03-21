@@ -35,11 +35,9 @@ if selected == "Grafico":
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
-          clientc = ("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mgkey"]+st.secrets["mongohost"])
-          return clientc
-     client = ("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mgkey"]+st.secrets["mongohost"])
-     st.write(st.secrets["mgkey"])
-     #client = MongoClient(init_connection())
+          return MongoClient(st.secrets["mg_connect"])
+     st.write(st.secrets["mg_connect"])
+     client = init_connection()
 '''
      @st.cache_data(ttl=600)
      def get_data():
