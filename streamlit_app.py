@@ -1,5 +1,12 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from pymongo import MongoClient
+import pandas as pd
+import plotly.graph_objects as go
+
+client = MongoClient("mongodb+srv://casper:casperKey@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
+db = client["CryptoData"]
+collection = db["BTC/BUSD_1m"]
 
 # Horizontal menu
 selected = option_menu(
@@ -24,14 +31,7 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-     from pymongo import MongoClient
-     import pandas as pd
-     #import plotly.graph_objects as go
-
-     client = MongoClient("mongodb+srv://casper:casperKey@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
-     db = client["CryptoData"]
-     collection = db["BTC/BUSD_1m"]
-
+     
      data_activo = pd.DataFrame(list(collection.find().limit(20)))
      st.write(data_activo)
      st.title(f"Selecionado {selected}")
