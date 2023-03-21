@@ -31,9 +31,7 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-     st.write(st.secrets["mongohost"])
-     st.write(st.secrets["mongouser"])
-     st.write(st.secrets["mongopass"])
+
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
