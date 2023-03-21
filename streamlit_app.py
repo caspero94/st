@@ -32,7 +32,8 @@ if selected == "Grafico":
      db = client["CryptoData"]
      collection = db["BTC/BUSD_1m"]
 
-     data_activo = pd.DataFrame(list(collection.find().limit(100)))
+     data_activo = pd.DataFrame(list(collection.find().limit(20)))
+     st.write(data_activo)
      st.title(f"Selecionado {selected}")
 
      fig = go.Figure()
@@ -55,6 +56,6 @@ if selected == "Grafico":
                                     'eraseshape',
                                 ],'scrollZoom': True})
      st.plotly_chart(fig,use_container_width=True,config=configs)
-
+     time.sleep(60)
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
