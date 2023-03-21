@@ -32,7 +32,7 @@ if selected == "Grafico":
      @st.cache_resource
      def init_connection():
           return MongoClient(st.secrets["mg_connect"])
-     st.write(st.secrets["mg_connect"])
+     st.write("Esta es la conexion a mongo db"+st.secrets["mg_connect"])
      client = init_connection()
 
 
