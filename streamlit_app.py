@@ -38,7 +38,7 @@ if selected == "Grafico":
           clientc = ("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mgkey"]+st.secrets["mongohost"])
           return clientc
      client = ("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mgkey"]+st.secrets["mongohost"])
-     st.write(client)
+     st.write(st.secrets["mgkey"])
      #client = MongoClient(init_connection())
 '''
      @st.cache_data(ttl=600)
