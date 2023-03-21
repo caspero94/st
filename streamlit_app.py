@@ -26,7 +26,7 @@ selected = option_menu(
 if selected == "Grafico":
      from pymongo import MongoClient
      import pandas as pd
-     import plotly.graph_objects as go
+     #import plotly.graph_objects as go
 
      client = MongoClient("mongodb+srv://casper:casperKey@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
      db = client["CryptoData"]
