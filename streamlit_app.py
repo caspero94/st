@@ -24,7 +24,7 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-     from pymongo import MongoCliente
+     from pymongo import MongoClient
      import pandas as pd
      import plotly.graph_objects as go
 
