@@ -49,7 +49,8 @@ if selected == "Grafico":
           return items
 
      items = get_data()
-     st.write(items)
+     for item in items:
+          st.write(f"{item['datetime']} has a :{item['close']}:")
 
      '''fig = go.Figure()
 
@@ -71,6 +72,5 @@ if selected == "Grafico":
                                     'eraseshape',
                                 ],'scrollZoom': True})
      st.plotly_chart(fig,use_container_width=True,config=configs)'''
-     time.sleep(60)
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
