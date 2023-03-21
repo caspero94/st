@@ -1,6 +1,5 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import pymongo
 from pymongo import MongoClient
 import pandas as pd
 import plotly.graph_objects as go
@@ -36,8 +35,8 @@ if selected == "Grafico":
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
-          return pymongo.MongoClient(**st.secrets["mongo"])
-
+          return MongoClient(**st.secrets["mongo"])
+     print(client)
      client = init_connection()
 
      @st.cache_data(ttl=600)
