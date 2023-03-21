@@ -36,7 +36,7 @@ if selected == "Grafico":
      st.write(data_activo)
      st.title(f"Selecionado {selected}")
 
-     fig = go.Figure()
+     '''fig = go.Figure()
 
      fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
      #fig.add_trace(go.Histogram(x=data_activo["volume"]))
@@ -55,7 +55,7 @@ if selected == "Grafico":
                                     'drawrect',
                                     'eraseshape',
                                 ],'scrollZoom': True})
-     st.plotly_chart(fig,use_container_width=True,config=configs)
+     st.plotly_chart(fig,use_container_width=True,config=configs)'''
      time.sleep(60)
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
