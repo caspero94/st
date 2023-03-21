@@ -40,7 +40,7 @@ if selected == "Grafico":
 
           
 
-          client = MongoClient("mongodb+srv://"+st.secrets["username"]+":"+st.secrets["password"]+st.secrets["host"])
+          client = MongoClient("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mongopass"]+st.secrets["mongohost"])
 
 
           return MongoClient(**st.secrets["mongo"])
