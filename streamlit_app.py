@@ -35,7 +35,7 @@ if selected == "Grafico":
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
-          st.write(st.secrets["mongo")
+          st.write(st.secrets["mongo"])
 
 
 
