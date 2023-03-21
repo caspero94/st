@@ -31,7 +31,7 @@ if selected == "Grafico":
      st.title(f"Selecionado {selected}")
      @st.cache_resource
      def init_connection():
-          return MongoClient(st.secrets["mg_connect"])
+          return MongoClient(host = 'mongodb+srv://clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority', serverSelectionTimeoutMS = 3000, username=st.secrets["usermg"], password=st.secrets["keymg"],)
      client = init_connection()
 
 
