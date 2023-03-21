@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pymongo
+from pymongo import MongoClient
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -14,7 +15,7 @@ client = init_connection()
 def get_data():
      collection = db["BTC/BUSD_1m"]
      db = client["CryptoData"]
-     items = db.collection.find().limit(20)
+     items = db.BTC/BUSD_1m.find().limit(20)
      items = list(items)  # make hashable for st.cache_data
      return items
 
