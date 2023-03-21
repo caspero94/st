@@ -37,7 +37,7 @@ if selected == "Grafico":
 
      @st.cache_data(ttl=600)
      def get_data():
-          db = client["CryptoData"]
+          db = client.CryptoData
           collection = db["BTC/BUSD_1m"]
           items = pd.DataFrame(list(collection.find().limit(100)))
           return items
