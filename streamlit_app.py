@@ -38,7 +38,7 @@ if selected == "Grafico":
           return MongoClient("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mongopass"]+st.secrets["mongohost"])
      
      client = init_connection()
-
+     st.write(init_connection)
      @st.cache_data(ttl=600)
      def get_data():
           db = client["CryptoData"]
