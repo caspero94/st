@@ -43,7 +43,7 @@ if selected == "Grafico":
           return items
 
      items = get_data()
-     st.write(pd.items)
+     st.write(items)
 '''
      fig = go.Figure()
 
