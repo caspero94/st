@@ -16,9 +16,9 @@ selected = option_menu(
                     "font-size": "25px",
                     "text-align": "center",
                     "margin": "0px",
-                    "--hover-color": "#eee",
+                    "--hover-color": "#8a0000",
                 },
-                "nav-link-selected": {"background-color": "#8a0000"},
+                "nav-link-selected": {"background-color": "#470000"},
             },
      )
 
