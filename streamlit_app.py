@@ -29,7 +29,8 @@ selected = option_menu(
 if selected == "Grafico":
 
      st.title(f"Selecionado {selected}")
-     @st.cache_resource
+     #@st.cache_resource
+     @st.experimental_singleton(suppress_st_warning=True)
      def init_connection():
           return MongoClient("mongodb+srv://st.secrets.db_username:st.secrets.db_pswd@st.secrets.cluster_name.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
      client = init_connection()
