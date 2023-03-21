@@ -45,13 +45,11 @@ if selected == "Grafico":
      def get_data():
           db = client["CryptoData"]
           collection = db["BTC/BUSD_1m"]
-          items = collection.find().limit(20)
-          items = list(items)  # make hashable for st.cache_data
+          items = pd.DataFrame(list(collection.find().limit(100)))
           return items
 
      items = get_data()
-     for item in items:
-          st.write(f"{item['datetime']} has a :{item['close']}:")
+     st.write(items)
 
      '''fig = go.Figure()
 
