@@ -39,7 +39,8 @@ if selected == "Grafico":
      def get_data():
           
           db = client.CryptoData
-          items = db.BTC/BUSD_1m.find()
+          collection = ["BTC/BUSD_1m"]
+          items = db.collection.find().limit(10)
           items = list(items)
           return items
 
