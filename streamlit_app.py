@@ -37,6 +37,7 @@ if selected == "Grafico":
      def init_connection():
           client = ("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mongopass"]+st.secrets["mongohost"])
           return client
+     client = ("mongodb+srv://"+st.secrets["mongouser"]+":"+st.secrets["mongopass"]+st.secrets["mongohost"])
      st.write(client)
      #client = MongoClient(init_connection())
 '''
