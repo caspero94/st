@@ -39,7 +39,7 @@ if selected == "Grafico":
           return client
      st.write(init_connection)
      #client = MongoClient(init_connection())
-
+'''
      @st.cache_data(ttl=600)
      def get_data():
           db = client["CryptoData"]
@@ -50,7 +50,7 @@ if selected == "Grafico":
      items = get_data()
      st.write(items)
 
-     '''fig = go.Figure()
+     fig = go.Figure()
 
      fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
      #fig.add_trace(go.Histogram(x=data_activo["volume"]))
