@@ -7,6 +7,9 @@ with st.sidebar:
      selected = option_menu(
           menu_title="Menu Principal",
           options=["Obtener datos", "Graficos"],
+          icons=["database","graph-up"],
+          menu_icon="list",
+          default_index=0
      )
 
 if selected == "Obtener datos":
