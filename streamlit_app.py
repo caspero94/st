@@ -12,9 +12,4 @@ with st.sidebar:
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
 if selected == "Graficos":
-     st.title(f"Selecionado {selected}"
-
-
-st.title("Proyecto X")
-menu = st.selectbox("Menu Principal",("Obtener datos", "Graficos"))
-st.write("Has selecionado", menu)
+     st.title(f"Selecionado {selected}")
