@@ -36,7 +36,7 @@ if selected == "Grafico":
      @st.cache_resource
      def init_connection():
           return MongoClient(**st.secrets["mongo"])
-     print(client)
+     print(init_connection)
      client = init_connection()
 
      @st.cache_data(ttl=600)
