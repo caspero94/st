@@ -82,7 +82,7 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección
-fromt = int(datetime.datetime.strptime(fromdate, '%Y-%m-%d').strftime("%s"))
+fromt = int(dt.datetime.strptime(fromdate, '%Y-%m-%d').strftime("%s"))
 data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt}})))
 
 #"$lt":ISODate(todate)
