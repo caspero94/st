@@ -12,7 +12,7 @@ layout = "wide"
 #page_title=page_title, page_icon=page_icon,
 #setting title for our app
 st.set_page_config( layout=layout,)
-st.title(page_icon + " " + page_title)
+#st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
                 #MainMenu {visibility: hidden;}
