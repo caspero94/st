@@ -16,9 +16,9 @@ st.markdown("""
         <style>
                .block-container {
                     padding-top: 2rem;
-                    padding-bottom: 0rem;
-                    padding-left: 0rem;
-                    padding-right: 0rem;
+                    padding-bottom: 2rem;
+                    padding-left: 2rem;
+                    padding-right: 2rem;
                 }
         </style>
         """, unsafe_allow_html=True)
@@ -31,7 +31,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
-col1, col2 = st.columns(2, gap="large")
+col1, col2 = st.columns(2)
 with col1:
     par = st.selectbox(
         "Coin",
