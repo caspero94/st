@@ -28,7 +28,7 @@ selected = option_menu(
 
 if selected == "Grafico":
      
-     client = pymongo.MongoClient(f"mongodb+srv://{st.secrets.db_username}:{st.secrets.db_pswd}@{st.secrets.host}")
+     client = pymongo.MongoClient(f"mongodb+srv://casper:caspero@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
      db = client["CryptoData"]
      collection = db["BTC/BUSD_1m"]
      df = pd.DataFrame(list(collection.find().limit(10)))
