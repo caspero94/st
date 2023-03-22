@@ -75,10 +75,6 @@ with st.container():
         xaxis_rangeslider_visible=False)
     #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
     #fig.update_xaxes(automargin='left+right')
-    configs = dict({'modeBarButtonsToAdd':['drawline',
-                                'drawopenpath',
-                                'drawcircle',
-                                'drawrect',
-                                'eraseshape',
-                            ],'scrollZoom': True,'displaylogo': False} )
+    #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
+    configs = dict({'scrollZoom': False,'displaylogo': False} )
     st.plotly_chart(fig,use_container_width=True,config=configs)
