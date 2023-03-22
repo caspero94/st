@@ -13,24 +13,30 @@ layout = "centered"
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
 st.title(page_title + " " + page_icon)
 
-@st.cache_resource
-def init_connection():
-    return pymongo.MongoClient("mongodb+srv://casper:<password>@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
+def get_mongo_db():
+    # Configura tu conexión a la base de datos de MongoDB Atlas
+    username = "casper"
+    password = "caspero"
+    cluster = "ClusterCrypto"
+    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@{cluster}.mongodb.net/test?retryWrites=true&w=majority")
 
-client = init_connection()
+    # Selecciona la base de datos que deseas utilizar
+    db = client["mydatabase"]
 
-@st.cache_data(ttl=600)
-def get_data():
-    db = client.CryptoData
-    collection = db["BTC/BUSD_1m"]
-    items = collection.find().limit(2)
-    items = list(items)  # make hashable for st.cache_data
-    return items
+    return db
 
-items = get_data()
+# Conecta a la base de datos
+db = get_mongo_db()
 
-for item in items:
-    st.write(f"{item['datetime']} has a :{item['close']}:")
+# Selecciona la colección que deseas utilizar
+collection = db["BTC/BUSD_1m"]
+
+# Realiza una consulta a la colección
+result = collection.find_one()
+
+# Muestra el resultado en tu aplicación de Streamlit
+st.write(result)
+
 
 
 # Horizontal menu
