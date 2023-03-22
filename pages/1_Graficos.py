@@ -57,10 +57,10 @@ with col2:
 with col3:
     fromdate = st.date_input(
         "From:",
-        datetime.date.today() - datetime.timedelta(days=60))
+        datetime.date.today() - datetime.timedelta(days=7),label_visibility="collapsed")
     todate = st.date_input(
         "To date:",
-        datetime.date.today())
+        datetime.date.today(),label_visibility="collapsed")
 with col4:
     st.write("dsada")
 
