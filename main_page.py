@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
 import plotly.graph_objects as go
-import pymongo
+import dbmongo
 
 #variables
 page_title = "Proyect X"
@@ -15,17 +15,7 @@ st.title(page_title + " " + page_icon)
 st.markdown("# Main page 🎈")
 st.sidebar.markdown("# Main page 🎈")
 
-def get_mongo_db():
-    # Configura tu conexión a la base de datos de MongoDB Atlas
-    username = "casper"
-    password = "caspero"
-    cluster = "ClusterCrypto"
-    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@{cluster}.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
 
-    # Selecciona la base de datos que deseas utilizar
-    db = client["CryptoData"]
-
-    return db
 
 # Horizontal menu
 selected = option_menu(
@@ -52,7 +42,7 @@ selected = option_menu(
 if selected == "Grafico":
     st.header("Grafico")
     # Conecta a la base de datos
-    db = get_mongo_db()
+    db = dbmongo.get_mongo_db()
 
     # Selecciona la colección que deseas utilizar
     collection = db["BTC/BUSD_1m"]
