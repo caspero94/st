@@ -84,7 +84,7 @@ collection = db[select_col]
 
 # Realiza una consulta a la colección
 st.write(fromdate)
-fromt = dt.datetime.strptime(fromdate, "%Y-%m-%d").timestamp()
+fromt = dt.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
 st.write(fromt)
 data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt}})))
 
