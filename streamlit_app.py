@@ -1,8 +1,17 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import pymongo
 import pandas as pd
 import plotly.graph_objects as go
+import database as db 
+
+#variables
+page_title = "Proyect X"
+page_icon = ":money_with_wings:"
+layout = "centered"
+
+#setting title for our app
+st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
+st.title(page_title + " " + page_icon)
 
 # Horizontal menu
 selected = option_menu(
@@ -27,15 +36,9 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-     st.title(f"Selecionado {selected}")
-     st.write(f"mongodb+srv://casper:caspero@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
-     client = pymongo.MongoClient(f"mongodb+srv://casper:caspero@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
-     
-     db = client["CryptoData"]
-     collection = db["BTC/BUSD_1m"]
-     df = pd.DataFrame(list(collection.find().limit(10)))
-     st.write(df)
-     
+     st.header("Grafico")
+     items = db.fetch_all_periods()
+     st.write(items)
 '''
      @st.cache_resource
      def init_connection():
