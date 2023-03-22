@@ -7,10 +7,10 @@ import streamlit as st
 #variables
 page_title = "Graficos"
 page_icon = ":chart:"
-layout = "centered"
+layout = "wide"
 
 #setting title for our app
-st.set_page_config(page_title=page_title, page_icon=page_icon, layout=wide,)
+st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout,)
 st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
