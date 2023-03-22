@@ -3,7 +3,7 @@ import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
-import datetime
+import datetime as dt
 
 #variables
 page_title = "Graficos"
@@ -60,7 +60,7 @@ with col2:
         "1D" : "1 Dia",
         "3D" : "3 Dias",
         "1S" : "1 Semana",
-        "1M" : "2 Mes",
+        "1M" : "1 Mes",
         }
     timeframe = st.selectbox(
         "Coin",
@@ -72,18 +72,20 @@ with col3:
     with date1:
         fromdate = st.date_input(
             "From:",
-            datetime.date.today() - datetime.timedelta(days=7),label_visibility="collapsed")
+            dt.date.today() - datetime.timedelta(days=2),label_visibility="collapsed")
     with date2:
         todate = st.date_input(
             "To date:",
-            datetime.date.today(),label_visibility="collapsed")
+            dt.date.today(),label_visibility="collapsed")
 
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección
-data_activo = pd.DataFrame(list(collection.find().limit(100)))
+data_activo = pd.DataFrame(list(collection.find({"datetime":{"$gte":fromdate,"$lt":todate}})))
+
+
 data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
 #data_activo = data_activo.set_index('datetime')
 # Muestra el resultado en tu aplicación de Streamlit
