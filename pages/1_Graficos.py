@@ -14,9 +14,9 @@ st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout,)
 st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
-                #MainMenu {visibility: hidden;}
-                footer {visibility: hidden;}
-                header {visibility: hidden;}
+                #MainMenu {visibility: collapsed;}
+                footer {visibility: collapsed;}
+                header {visibility: collapsed;}
                 .block-container {
                     padding-top: 2rem;
                     padding-bottom: 0rem;
