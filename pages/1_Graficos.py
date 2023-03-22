@@ -3,6 +3,7 @@ import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+import datetime
 
 #variables
 page_title = "Graficos"
@@ -37,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(4)
 with col1:
     par = st.selectbox(
         "Coin",
@@ -53,6 +54,14 @@ with col2:
         ("1m","3m"),
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
+with col3:
+    fromdate = st.date_input(
+        "From:",
+        datetime.date(2019, 7, 6))
+    todate = st.date_input(
+        "To date:",
+        datetime.date(datetime.today))
+with col4:
 
 
 # Selecciona la colección que deseas utilizar
