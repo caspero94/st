@@ -48,13 +48,13 @@ with col2:
     timeframe ="1m"
     m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15, gap="small")
     with m1:
-        if st.button('1m'):
+        if st.button('1m '):
             timeframe = "1m"
     with m3:
-        if st.button('3m'):
+        if st.button('3m '):
             timeframe = "3m"
     with m5:
-        if st.button('5m'):
+        if st.button('5m '):
             timeframe = "5m"
     with m15:
         if st.button('15m'):
@@ -63,34 +63,34 @@ with col2:
         if st.button('30m'):
             timeframe = "30m"
     with h1:
-        if st.button('1h'):
+        if st.button('1h '):
             timeframe = "1h"
     with h2:
-        if st.button('2h'):
+        if st.button('2h '):
             timeframe = "2h" 
     with h4:
-        if st.button('4h'):
+        if st.button('4h '):
             timeframe = "4h"    
     with h6:
-        if st.button('6h'):
+        if st.button('6h '):
             timeframe = "6h" 
     with h8:
-        if st.button('8h'):
+        if st.button('8h '):
             timeframe = "8h" 
     with h12:
         if st.button('12h'):
             timeframe = "12h" 
     with d1:
-        if st.button('1D'):
+        if st.button('1D '):
             timeframe = "1d" 
     with d3:
-        if st.button('3D'):
+        if st.button('3D '):
             timeframe = "3d" 
     with s1:
-        if st.button('1S'):
+        if st.button('1S '):
             timeframe = "1S" 
     with me1:
-        if st.button('1M'):
+        if st.button('1M '):
             timeframe = "1M" 
 with col3:
     date1, date2 = st.columns(2)
