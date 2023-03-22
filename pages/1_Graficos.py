@@ -49,6 +49,8 @@ with col2:
     with m1:
         if st.button('1m'):
             timeframe = "1m"
+        if st.button('3m'):
+            timeframe = "3m"
     with m3:
         if st.button('3m'):
             timeframe = "3m"
