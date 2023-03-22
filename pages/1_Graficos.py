@@ -38,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3 = st.columns(3)
 with col1:
     par = st.selectbox(
         "Coin",
@@ -79,7 +79,7 @@ with col3:
         todate = st.date_input(
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
-with col4:
+'''with col4:
     timeframe_options = {
         "1m" : "1 Minuto",
         "3m" : "3 Minutos",
@@ -89,7 +89,7 @@ with col4:
         ("1m","3m"),
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
-
+'''
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
