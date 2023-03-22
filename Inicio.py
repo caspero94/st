@@ -4,7 +4,7 @@ from streamlit_option_menu import option_menu
 
 #variables
 page_title = "Proyect X"
-page_icon = "graph-up"
+page_icon = ":graph-up:"
 layout = "centered"
 
 #setting title for our app
@@ -24,7 +24,10 @@ st.markdown("""
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
 
-
+with st.sidebar:
+    selected = option_menu("Inicio", ["Inicio", 'Graficos',"Obtener datos"], 
+        icons=['house', 'graph-up', "file-bar-graph-fill"], menu_icon="cast", default_index=1)
+    selected
 
 # Horizontal menu
 selected = option_menu(
