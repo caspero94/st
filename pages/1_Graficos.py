@@ -57,7 +57,7 @@ with col2:
 with col3:
     fromdate = st.date_input(
         "From:",
-        (datetime.date.today() - datetime.timedelta(months=1)))
+        datetime.date.today() - datetime.timedelta(days=60))
     todate = st.date_input(
         "To date:",
         datetime.date.today())
