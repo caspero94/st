@@ -20,6 +20,7 @@ st.markdown("""
                     padding-left: 2rem;
                     padding-right: 2rem;
                 }
+                .element-container:nth-child(12) .overlayBtn {visibility: hidden;}
         </style>
         """, unsafe_allow_html=True)
 
@@ -77,5 +78,5 @@ with st.container():
                                 'drawcircle',
                                 'drawrect',
                                 'eraseshape',
-                            ],'scrollZoom': True,'displayModeBar': False} )
+                            ],'scrollZoom': True,'displaylogo': False} )
     st.plotly_chart(fig,use_container_width=True,config=configs)
