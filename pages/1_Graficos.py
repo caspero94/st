@@ -72,7 +72,7 @@ with col3:
     with date1:
         fromdate = st.date_input(
             "From:",
-            dt.date.today() - dt.timedelta(days=2),label_visibility="collapsed")
+            dt.date.today() - dt.timedelta(days=4),label_visibility="collapsed")
     with date2:
         todate = st.date_input(
             "To date:",
@@ -83,7 +83,6 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección
-st.write(fromdate)
 fromt = dt.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
 st.write(fromt)
 data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt}})))
