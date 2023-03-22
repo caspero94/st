@@ -48,3 +48,7 @@
 
     if selected == "Obtener datos":
         switch_page("Graficos")
+
+def menu_principal():
+
+    return switch_page(selected)

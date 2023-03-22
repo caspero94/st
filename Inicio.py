@@ -23,7 +23,6 @@ st.markdown("""
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
     
-menu.menu_principal()
 
 
 
