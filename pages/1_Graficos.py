@@ -3,7 +3,7 @@ import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
 
-#st.markdown("# Graficos")
+st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
 
 # Conecta a la base de datos
