@@ -37,7 +37,7 @@ selected = option_menu(
 
 if selected == "Grafico":
      st.header("Grafico")
-     items = db.fetch_all_periods()
+     items = db.get_data()
      st.write(items)
 
 if selected == "Obtener datos":
