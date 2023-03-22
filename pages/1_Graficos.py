@@ -45,7 +45,7 @@ with col1:
         ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 with col2:
-    m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15, gap="none")
+    m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15, gap="small")
     with m1:
         if st.button('1m'):
             timeframe = "1m"
