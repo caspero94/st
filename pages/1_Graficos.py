@@ -77,6 +77,7 @@ with col3:
         todate = st.date_input(
             "To date:",
             dt.date.today(),label_visibility="collapsed")
+        st.write(todate)
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
