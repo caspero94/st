@@ -31,20 +31,22 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
+col1, col2 = st.colums(2)
+with col1:
+    par = st.selectbox(
+        "Coin",
+        ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
-par = st.selectbox(
-    "Coin",
-    ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
-
-timeframe_options = {
-    "1m" : "1 Minuto",
-    "3m" : "3 Minutos",
-    }
-timeframe = st.selectbox(
-    "Coin",
-    ("1m","3m"),
-    format_func = lambda x: timeframe_options.get(x),
-    label_visibility="collapsed")
+with col2:
+    timeframe_options = {
+        "1m" : "1 Minuto",
+        "3m" : "3 Minutos",
+        }
+    timeframe = st.selectbox(
+        "Coin",
+        ("1m","3m"),
+        format_func = lambda x: timeframe_options.get(x),
+        label_visibility="collapsed")
 
 
 # Selecciona la colección que deseas utilizar
