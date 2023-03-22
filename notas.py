@@ -37,7 +37,7 @@
                                     'eraseshape',
                                 ],'scrollZoom': True})
      st.plotly_chart(fig,use_container_width=True,config=configs)
-'''     
+    
 
     if selected == "Inicio":
         st.write("Iniciooo")
@@ -52,3 +52,15 @@
 def menu_principal():
 
     return switch_page(selected)
+
+with col4:
+    timeframe_options = {
+        "1m" : "1 Minuto",
+        "3m" : "3 Minutos",
+        }
+    timeframe = st.selectbox(
+        "Coin",
+        ("1m","3m"),
+        format_func = lambda x: timeframe_options.get(x),
+        label_visibility="collapsed")
+'''

@@ -102,17 +102,7 @@ with col3:
         todate = st.date_input(
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
-'''with col4:
-    timeframe_options = {
-        "1m" : "1 Minuto",
-        "3m" : "3 Minutos",
-        }
-    timeframe = st.selectbox(
-        "Coin",
-        ("1m","3m"),
-        format_func = lambda x: timeframe_options.get(x),
-        label_visibility="collapsed")
-'''
+
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
