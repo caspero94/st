@@ -3,7 +3,7 @@ import streamlit as st
 import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
-import menu
+
 #variables
 page_title = "Graficos"
 page_icon = ":graph:"
