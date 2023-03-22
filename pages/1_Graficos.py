@@ -38,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
-col1, col2, col3 = st.columns([1,5,1])
+col1, col2, col3 = st.columns([1,1,5])
 with col1:
     par = st.selectbox(
         "Coin",
@@ -49,8 +49,6 @@ with col2:
     with m1:
         if st.button('1m'):
             timeframe = "1m"
-        if st.button('3m'):
-            timeframe = "3m"
     with m3:
         if st.button('3m'):
             timeframe = "3m"
@@ -83,6 +81,10 @@ with col2:
             timeframe = "12h" 
 
 with col3:
+    if st.button('1m'):
+        timeframe = "1m"
+    if st.button('3m'):
+        timeframe = "3m"
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
