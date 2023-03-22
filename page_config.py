@@ -1,6 +1,6 @@
 # Resources
 import streamlit as st
-from menu import menu_p
+import menu
 #variables
 page_title = "Proyect X"
 page_icon = ":graph-up:"
