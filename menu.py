@@ -23,6 +23,3 @@ selected = option_menu(
             },
      )
 
-def menu_principal():
-
-    return switch_page(selected)
