@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from pymongo import MongoClient
+import pymongo
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -27,8 +27,14 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-
+     
+     client = pymongo.MongoClient(f"mongodb://{st.secrets["db_username"]}:{st.secrets["db_pswd"]}@{st.secrets["host"]}")
+     db = client["CryptoData"]
+     collection = db["BTC/BUSD_1m"]
+     df = pd.DataFrame(list(collection.find().limit(10)))
+     st.write(df)
      st.title(f"Selecionado {selected}")
+'''
      @st.cache_resource
      def init_connection():
           return MongoClient("mongodb+srv://st.secrets.db_username:st.secrets.db_pswd@st.secrets.cluster_name.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
@@ -46,7 +52,7 @@ if selected == "Grafico":
 
      items = get_data()
      st.write(items)
-'''
+
      fig = go.Figure()
 
      fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
@@ -66,6 +72,7 @@ if selected == "Grafico":
                                     'drawrect',
                                     'eraseshape',
                                 ],'scrollZoom': True})
-     st.plotly_chart(fig,use_container_width=True,config=configs)'''
+     st.plotly_chart(fig,use_container_width=True,config=configs)
+'''     
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
