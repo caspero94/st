@@ -1,9 +1,10 @@
+# Resources
 import streamlit as st
 from streamlit_option_menu import option_menu
 
 #variables
 page_title = "Proyect X"
-page_icon = ":money_with_wings:"
+page_icon = ":house:"
 layout = "centered"
 
 #setting title for our app
@@ -19,6 +20,7 @@ st.markdown("""
                 }
         </style>
         """, unsafe_allow_html=True)
+
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
 
