@@ -18,7 +18,7 @@ st.markdown("""
                     padding-top: 2rem;
                     padding-bottom: 2rem;
                     padding-left: 2rem;
-                    padding-right: 6rem;
+                    padding-right: 4rem;
                 }
                 button[title="View fullscreen"] {
                     visibility: hidden;
