@@ -46,11 +46,15 @@ selected = option_menu(
                 "nav-link-selected": {"background-color": "#470000"},
             },
      )
+if selected == "Inicio":
+    switch_page("Inicio")
+    st.title(f"Selecionado {selected}")
 if selected == "Graficos":
     switch_page("Graficos")
     st.title(f"Selecionado {selected}")
 
 if selected == "Obtener datos":
+    switch_page("Graficos")
     st.title(f"Selecionado {selected}")
 
 
