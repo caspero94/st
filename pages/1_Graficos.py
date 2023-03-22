@@ -33,7 +33,7 @@ db = dbmongo.get_mongo_db()
 # Obtener collections
 
 option = st.selectbox(
-    '',
+    None,
     (db.list_collection_names()))
 
 
