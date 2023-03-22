@@ -32,7 +32,9 @@ db = dbmongo.get_mongo_db()
 
 # Obtener collections
 
-option = st.selectbox((db.list_collection_names()))
+option = st.selectbox(
+    '',
+    (db.list_collection_names()))
 
 
 # Selecciona la colección que deseas utilizar
