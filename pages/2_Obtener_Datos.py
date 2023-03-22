@@ -26,3 +26,4 @@ st.markdown("""
 
 def print_menu():
     menu_p()
+print_menu()
