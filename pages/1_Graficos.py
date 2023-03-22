@@ -78,4 +78,4 @@ with st.container():
                                 'drawrect',
                                 'eraseshape',
                             ],'scrollZoom': True})
-    st.plotly_chart(fig,use_container_width=True,config=configs)
+    st.plotly_chart(fig,use_container_width=False,config=configs)
