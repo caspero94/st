@@ -7,7 +7,7 @@ page_icon = ":file-bar-graph-fill:"
 layout = "centered"
 
 #setting title for our app
-st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
+st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout, initial_sidebar_state="collapsed")
 st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
