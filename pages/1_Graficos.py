@@ -38,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
-col1, col2, col3 = st.columns([3,1])
+col1, col2, col3 = st.columns([1,3,1])
 with col1:
     par = st.selectbox(
         "Coin",
