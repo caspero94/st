@@ -82,10 +82,10 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección
-formato = "%Y-%m-%d"
-data_activo = pd.DataFrame(list(collection.find({"datetime":{"$gte":ISODate(fromdate),"$lt":ISODate(todate)}})))
+fromt = int(datetime.datetime.strptime(fromdate, '%Y-%m-%d').strftime("%s"))
+data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt}})))
 
-
+#"$lt":ISODate(todate)
 data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
 #data_activo = data_activo.set_index('datetime')
 # Muestra el resultado en tu aplicación de Streamlit
