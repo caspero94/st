@@ -58,7 +58,7 @@ if selected == "Grafico":
     # Realiza una consulta a la colección
     data_activo = pd.DataFrame(list(collection.find().limit(100)))
     data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
-    data_activo = data_activo.set_index('datetime')
+    #data_activo = data_activo.set_index('datetime')
     # Muestra el resultado en tu aplicación de Streamlit
     fig = go.Figure()
 
