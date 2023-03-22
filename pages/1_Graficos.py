@@ -67,14 +67,14 @@ with st.container():
     fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
     #fig.add_trace(go.Histogram(x=data_activo[7]))
     fig.update_layout(
-        #xaxis_title='Tiempo',
-        #yaxis_title='Precio',
+        xaxis_title='Tiempo',
+        yaxis_title='Precio',
 
         height = 700,
         margin=dict(l=0, r=0, t=0, b=0,pad=0),
         xaxis_rangeslider_visible=False)
-    fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
-    fig.update_xaxes(automargin='left+right')
+    #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
+    #fig.update_xaxes(automargin='left+right')
     configs = dict({'modeBarButtonsToAdd':['drawline',
                                 'drawopenpath',
                                 'drawcircle',
