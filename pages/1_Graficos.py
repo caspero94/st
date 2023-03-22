@@ -45,15 +45,30 @@ with col1:
         ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 with col2:
-    timeframe_options = {
-        "1m" : "1 Minuto",
-        "3m" : "3 Minutos",
-        }
-    timeframe = st.selectbox(
-        "Coin",
-        ("1m","3m"),
-        format_func = lambda x: timeframe_options.get(x),
-        label_visibility="collapsed")
+    m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15)
+    with m1:
+        if st.button('1m'):
+            timeframe = "1m"
+    with m3:
+        if st.button('3m'):
+            timeframe = "3m"
+    with m5:
+        if st.button('5m'):
+            timeframe = "5m"
+    with m15:
+        if st.button('15m'):
+            timeframe = "15m"
+    with m30:
+        if st.button('30m'):
+            timeframe = "30m"
+    with h1:
+        if st.button('1h'):
+            timeframe = "1h"
+    with h2:
+        if st.button('2h'):
+            timeframe = "2h" 
+    
+
 with col3:
     date1, date2 = st.columns(2)
     with date1:
@@ -65,7 +80,15 @@ with col3:
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
 with col4:
-    st.write("dsada")
+    timeframe_options = {
+        "1m" : "1 Minuto",
+        "3m" : "3 Minutos",
+        }
+    timeframe = st.selectbox(
+        "Coin",
+        ("1m","3m"),
+        format_func = lambda x: timeframe_options.get(x),
+        label_visibility="collapsed")
 
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
