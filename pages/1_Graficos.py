@@ -7,7 +7,7 @@ st.markdown("# Graficos")
 st.sidebar.markdown("# Graficos")
 
 
-st.title(f"Selecionado {selected}")
+st.title("Graficos")
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 
