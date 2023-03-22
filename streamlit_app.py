@@ -15,7 +15,7 @@ st.title(page_title + " " + page_icon)
 
 @st.cache_resource
 def init_connection():
-    return pymongo.MongoClient("mongodb+srv://"**st.secrets["mongo"])
+    return pymongo.MongoClient("mongodb+srv://casper:<password>@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
 
 client = init_connection()
 
