@@ -60,7 +60,7 @@ with col3:
         datetime.date(2019, 7, 6))
     todate = st.date_input(
         "To date:",
-        datetime.date(datetime.today))
+        datetime.date(today))
 with col4:
     st.write("dsada")
 
