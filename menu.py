@@ -1,7 +1,6 @@
 # Resources
 from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
-import streamlit as st
 # Horizontal menu
 selected = option_menu(
           menu_title=None,
