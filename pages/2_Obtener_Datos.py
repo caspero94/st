@@ -1,5 +1,5 @@
 # Resources
-import page_config
+import menu
 import streamlit as st
 
 
