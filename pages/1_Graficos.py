@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 
 #variables
 page_title = "Graficos"
-page_icon = ":house:"
+page_icon = ":graph:"
 layout = "centered"
 
 #setting title for our app
