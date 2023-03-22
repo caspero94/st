@@ -56,11 +56,30 @@ if selected == "Grafico":
     collection = db["BTC/BUSD_1m"]
 
     # Realiza una consulta a la colección
-    df = pd.DataFrame(list(collection.find().limit(100)))
-    df.drop(['_id','timestamp'], axis=1, inplace=True)
-    df = df.set_index('datetime')
+    data_activo = pd.DataFrame(list(collection.find().limit(100)))
+    data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
+    data_activo = data_activo.set_index('datetime')
     # Muestra el resultado en tu aplicación de Streamlit
-    st.write(df)
+    fig = go.Figure()
+
+    fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+    #fig.add_trace(go.Histogram(x=data_activo[7]))
+    fig.update_layout(
+        #xaxis_title='Tiempo',
+        #yaxis_title='Precio',
+
+        height = 750,
+        margin=dict(l=0, r=0, t=0, b=0,pad=0),
+        xaxis_rangeslider_visible=False)
+    fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
+    #fig.update_xaxes(automargin='left+right')
+    configs = dict({'modeBarButtonsToAdd':['drawline',
+                                'drawopenpath',
+                                'drawcircle',
+                                'drawrect',
+                                'eraseshape',
+                            ],'scrollZoom': True})
+    st.plotly_chart(fig,use_container_width=True,config=configs)
 
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
