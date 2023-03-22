@@ -32,8 +32,8 @@ db = dbmongo.get_mongo_db()
 
 # Obtener collections
 
-list_col = list_collection_names()
-for coll in mydb.list_collection_names():
+
+for coll in db.list_collection_names():
     st.write(coll)
 
 # Selecciona la colección que deseas utilizar
