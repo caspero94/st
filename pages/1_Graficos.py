@@ -26,15 +26,16 @@ st.markdown("""
 
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
-st.write("GRAFICOS")
+
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
 
+option = st.selectbox(
+    'How would you like to be contacted?',
+    (db.list_collection_names()))
 
-for coll in db.list_collection_names():
-    st.write(coll)
 
 # Selecciona la colección que deseas utilizar
 collection = db["BTC/BUSD_1m"]
