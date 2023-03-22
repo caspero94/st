@@ -47,7 +47,7 @@ selected = option_menu(
             },
      )
 if selected == "Graficos":
-    switch_page("1_Graficos")
+    switch_page("Graficos")
     st.title(f"Selecionado {selected}")
 
 if selected == "Obtener datos":
