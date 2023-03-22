@@ -45,53 +45,28 @@ with col1:
         ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 with col2:
-    timeframe ="1m"
-    m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15, gap="small")
-    with m1:
-        if st.button('1m '):
-            timeframe = "1m"
-    with m3:
-        if st.button('3m '):
-            timeframe = "3m"
-    with m5:
-        if st.button('5m '):
-            timeframe = "5m"
-    with m15:
-        if st.button('15m'):
-            timeframe = "15m"
-    with m30:
-        if st.button('30m'):
-            timeframe = "30m"
-    with h1:
-        if st.button('1h '):
-            timeframe = "1h"
-    with h2:
-        if st.button('2h '):
-            timeframe = "2h" 
-    with h4:
-        if st.button('4h '):
-            timeframe = "4h"    
-    with h6:
-        if st.button('6h '):
-            timeframe = "6h" 
-    with h8:
-        if st.button('8h '):
-            timeframe = "8h" 
-    with h12:
-        if st.button('12h'):
-            timeframe = "12h" 
-    with d1:
-        if st.button('1D '):
-            timeframe = "1d" 
-    with d3:
-        if st.button('3D '):
-            timeframe = "3d" 
-    with s1:
-        if st.button('1S '):
-            timeframe = "1S" 
-    with me1:
-        if st.button('1M '):
-            timeframe = "1M" 
+    timeframe_options = {
+        "1m" : "1 Minuto",
+        "3m" : "3 Minutos",
+        "5m" : "5 Minutos",
+        "15m" : "15 Minutos",
+        "30m" : "30 Minutos",
+        "1h" : "1 Hora",
+        "2h" : "2 Horas",
+        "4h" : "4 Horas",
+        "6h" : "6 Horas",
+        "8h" : "8 Horas",
+        "12h" : "12 Horas",
+        "1D" : "1 Dia",
+        "3D" : "3 Dias",
+        "1S" : "1 Semana",
+        "1M" : "2 Mes",
+        }
+    timeframe = st.selectbox(
+        "Coin",
+        ("1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1D","3D","1S","1M"),
+        format_func = lambda x: timeframe_options.get(x),
+        label_visibility="collapsed")
 with col3:
     date1, date2 = st.columns(2)
     with date1:
