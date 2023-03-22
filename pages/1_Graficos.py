@@ -20,6 +20,9 @@ st.markdown("""
                     padding-left: 2rem;
                     padding-right: 2rem;
                 }
+                button[title="View fullscreen"] {
+                    visibility: hidden;
+                }
                 .element-container:nth-child(12) .overlayBtn {visibility: hidden;}
         </style>
         """, unsafe_allow_html=True)
