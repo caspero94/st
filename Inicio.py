@@ -1,7 +1,7 @@
 # Resources
 import streamlit as st
 from streamlit_option_menu import option_menu
-
+from streamlit_extras.switch_page_button import switch_page
 #variables
 page_title = "Proyect X"
 page_icon = ":graph-up:"
@@ -23,11 +23,8 @@ st.markdown("""
 
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
+    
 
-with st.sidebar:
-    selected = option_menu("Inicio", [ 'Graficos',"Obtener datos"], 
-        icons=[ 'graph-up', "file-bar-graph-fill"], menu_icon="cast", default_index=1)
-    selected
 
 # Horizontal menu
 selected = option_menu(
@@ -50,7 +47,7 @@ selected = option_menu(
             },
      )
 if selected == "Graficos":
-    st.markdown(link, unsafe_allow_html=True)
+    switch_page("1_Graficos")
     st.title(f"Selecionado {selected}")
 
 if selected == "Obtener datos":
