@@ -2,8 +2,8 @@
 import streamlit as st
 
 #variables
-page_title = "Proyect X"
-page_icon = "graph-up:"
+page_title = "Obtener datos"
+page_icon = ":file-bar-graph-fill:"
 layout = "centered"
 
 #setting title for our app

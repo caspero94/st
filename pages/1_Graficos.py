@@ -5,8 +5,8 @@ import pandas as pd
 import plotly.graph_objects as go
 
 #variables
-page_title = "Proyect X"
-page_icon = ":graph-up"
+page_title = "Graficos"
+page_icon = ":graph-up:"
 layout = "centered"
 
 #setting title for our app
