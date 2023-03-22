@@ -3,7 +3,7 @@ import streamlit as st
 
 #variables
 page_title = "Proyect X"
-page_icon = ":house:"
+page_icon = "graph-up:"
 layout = "centered"
 
 #setting title for our app
