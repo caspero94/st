@@ -85,7 +85,7 @@ collection = db[select_col]
 # Realiza una consulta a la colección
 fromt = dt.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
 st.write(fromt)
-data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt}})))
+data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt}}).limit(300)))
 
 #"$lt":ISODate(todate)
 data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
