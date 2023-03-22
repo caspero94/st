@@ -1,10 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-#variables
-page_title = "Proyect X"
-page_icon = ":money_with_wings:"
-layout = "centered"
 st.markdown("""
         <style>
                .block-container {
@@ -15,6 +11,12 @@ st.markdown("""
                 }
         </style>
         """, unsafe_allow_html=True)
+
+#variables
+page_title = "Proyect X"
+page_icon = ":money_with_wings:"
+layout = "centered"
+
 #setting title for our app
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
 st.title(page_title + " " + page_icon)
