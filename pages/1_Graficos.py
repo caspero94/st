@@ -38,14 +38,14 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Obtener collections
-col1, col2, col3 = st.columns([1,1,5])
+col1, col2, col3 = st.columns([1,7,1])
 with col1:
     par = st.selectbox(
         "Coin",
         ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 with col2:
-    m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15, gap="small")
+    m1, m3, m5, m15, m30, h1, h2, h4, h6, h8, h12, d1, d3, s1, me1 = st.columns(15, gap="none")
     with m1:
         if st.button('1m'):
             timeframe = "1m"
@@ -81,10 +81,6 @@ with col2:
             timeframe = "12h" 
 
 with col3:
-    if st.button('6m'):
-        timeframe = "6m"
-    if st.button('4m'):
-        timeframe = "4m"
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
