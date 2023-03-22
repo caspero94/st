@@ -19,8 +19,5 @@ st.markdown("""
                 }
         </style>
         """, unsafe_allow_html=True)
-def print_menu():
-    menu_p()
 
-
-print_menu()
+menu_p()
