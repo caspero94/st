@@ -4,6 +4,7 @@ import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
 from menu import menu_p
+import streamlit as st
 
 st.markdown("""
         <style>

@@ -1,7 +1,7 @@
 # Resources
 import page_config
 from menu import menu_p
-
+import streamlit as st
 st.markdown("""
         <style>
                .block-container {
