@@ -23,7 +23,6 @@ st.markdown("""
                 button[title="View fullscreen"] {
                     visibility: hidden;
                 }
-                .element-container:nth-child(12) .overlayBtn {visibility: hidden;}
         </style>
         """, unsafe_allow_html=True)
 
