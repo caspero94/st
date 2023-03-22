@@ -72,7 +72,7 @@ with col3:
     with date1:
         fromdate = st.date_input(
             "From:",
-            dt.date.today() - datetime.timedelta(days=2),label_visibility="collapsed")
+            dt.date.today() - dt.timedelta(days=2),label_visibility="collapsed")
     with date2:
         todate = st.date_input(
             "To date:",
