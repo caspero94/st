@@ -12,6 +12,8 @@ layout = "centered"
 #setting title for our app
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
 st.title(page_title + " " + page_icon)
+st.markdown("# Main page 🎈")
+st.sidebar.markdown("# Main page 🎈")
 
 def get_mongo_db():
     # Configura tu conexión a la base de datos de MongoDB Atlas
