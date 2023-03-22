@@ -40,5 +40,6 @@ if selected == "Grafico":
      items = db.get_data()
      st.write(items)
 
+
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
