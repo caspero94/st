@@ -32,10 +32,10 @@ db = get_mongo_db()
 collection = db["BTC/BUSD_1m"]
 
 # Realiza una consulta a la colección
-result = collection.find_one()
+df = pd.DataFrame(list(collection.find().limit(100)))
 
 # Muestra el resultado en tu aplicación de Streamlit
-st.write(result)
+st.write(df)
 
 
 
