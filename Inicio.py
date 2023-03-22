@@ -1,6 +1,6 @@
 # Resources
 import streamlit as st
-from menu import menu_principal
+import menu
 #variables
 page_title = "Proyect X"
 page_icon = ":graph-up:"
@@ -23,7 +23,7 @@ st.markdown("""
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
     
-menu_principal()
+menu.menu_principal()
 
 
 
