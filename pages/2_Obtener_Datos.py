@@ -24,4 +24,5 @@ st.markdown("""
 #st.markdown("# Obtener datos")
 #st.sidebar.markdown("# Obtener datos")
 
-menu_p()
+def print_menu():
+    menu_p()

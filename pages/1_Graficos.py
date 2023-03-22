@@ -26,8 +26,8 @@ st.markdown("""
 
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
-
-menu_p()
+def print_menu():
+    menu_p()
 
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()

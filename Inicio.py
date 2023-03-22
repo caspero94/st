@@ -23,7 +23,8 @@ st.markdown("""
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
 
-menu_p()
+def print_menu():
+    menu_p()
 
 
 
