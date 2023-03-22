@@ -67,7 +67,18 @@ with col2:
     with h2:
         if st.button('2h'):
             timeframe = "2h" 
-    
+    with h4:
+        if st.button('4h'):
+            timeframe = "4h"    
+    with h6:
+        if st.button('6h'):
+            timeframe = "6h" 
+    with h8:
+        if st.button('8h'):
+            timeframe = "8h" 
+    with h12:
+        if st.button('12h'):
+            timeframe = "12h" 
 
 with col3:
     date1, date2 = st.columns(2)
