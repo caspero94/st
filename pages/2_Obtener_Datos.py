@@ -1,6 +1,6 @@
 # Resources
 import streamlit as st
-import menu
+from menu import menu_principal
 #variables
 page_title = "Obtener datos"
 page_icon = ":file-bar-graph-fill:"
@@ -22,3 +22,4 @@ st.markdown("""
 
 #st.markdown("# Obtener datos")
 #st.sidebar.markdown("# Obtener datos")
+menu_principal()

@@ -38,3 +38,13 @@
                                 ],'scrollZoom': True})
      st.plotly_chart(fig,use_container_width=True,config=configs)
 '''     
+
+    if selected == "Inicio":
+        st.write("Iniciooo")
+    
+    if selected == "Graficos":
+        switch_page("Graficos")
+
+
+    if selected == "Obtener datos":
+        switch_page("Graficos")
