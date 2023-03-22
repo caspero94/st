@@ -38,7 +38,7 @@ option = st.selectbox(
 
 
 # Selecciona la colección que deseas utilizar
-collection = db["BTC/BUSD_1m"]
+collection = db[option]
 
 # Realiza una consulta a la colección
 data_activo = pd.DataFrame(list(collection.find().limit(100)))
