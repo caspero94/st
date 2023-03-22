@@ -1,4 +1,7 @@
 import streamlit as st
 
-st.markdown("# Page 3 ❄️")
-st.sidebar.markdown("# Page 3 ❄️")
+st.markdown("# Obtener datos")
+st.sidebar.markdown("# Obtener datos")
+
+if selected == "Obtener datos":
+     st.title(f"Selecionado {selected}")
