@@ -77,5 +77,5 @@ with st.container():
                                 'drawcircle',
                                 'drawrect',
                                 'eraseshape',
-                            ],'scrollZoom': True})
-    st.plotly_chart(fig,use_container_width=False,config=configs)
+                            ],'scrollZoom': True,'displayModeBar': False} )
+    st.plotly_chart(fig,use_container_width=True,config=configs)
