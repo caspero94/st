@@ -12,7 +12,7 @@ def insert_period(period,incomes,expenses,comment):
     return collection.insert_one({"key":period,"incomes":incomes,"expenses":expenses,"comment":comment})
 
 def fetch_all_periods():
-    res = collection.find().limit(2)
+    res = pd.DataFrame(list(collection.find().limit(10)))
     return res
 
 def get_period(period):
