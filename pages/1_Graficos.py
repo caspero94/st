@@ -15,10 +15,10 @@ st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
                .block-container {
-                    padding-top: 2rem;
-                    padding-bottom: 2rem;
-                    padding-left: 2rem;
-                    padding-right: 3rem;
+                    padding-top: 0rem;
+                    padding-bottom: 0rem;
+                    padding-left: 0rem;
+                    padding-right: 0rem;
                 }
                 button[title="View fullscreen"] {
                     visibility: hidden;
@@ -67,8 +67,8 @@ with st.container():
     fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
     #fig.add_trace(go.Histogram(x=data_activo[7]))
     fig.update_layout(
-        xaxis_title='Tiempo',
-        yaxis_title='Precio',
+        #xaxis_title='Tiempo',
+        #yaxis_title='Precio',
 
         #height = 700,
         margin=dict(l=0, r=0, t=0, b=0,pad=0),
