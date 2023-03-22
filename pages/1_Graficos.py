@@ -55,12 +55,15 @@ with col2:
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
 with col3:
-    fromdate = st.date_input(
-        "From:",
-        datetime.date.today() - datetime.timedelta(days=7),label_visibility="collapsed")
-    todate = st.date_input(
-        "To date:",
-        datetime.date.today(),label_visibility="collapsed")
+    date1, date2 = st.columns(2)
+    with date1:
+        fromdate = st.date_input(
+            "From:",
+            datetime.date.today() - datetime.timedelta(days=7),label_visibility="collapsed")
+    with date2:
+        todate = st.date_input(
+            "To date:",
+            datetime.date.today(),label_visibility="collapsed")
 with col4:
     st.write("dsada")
 
