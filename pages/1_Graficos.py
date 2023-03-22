@@ -9,9 +9,9 @@ import datetime
 page_title = "Graficos"
 page_icon = ":chart:"
 layout = "wide"
-
+#page_title=page_title, page_icon=page_icon,
 #setting title for our app
-st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout,)
+st.set_page_config( layout=layout,)
 st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
