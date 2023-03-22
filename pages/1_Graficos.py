@@ -81,10 +81,10 @@ with col2:
             timeframe = "12h" 
 
 with col3:
-    if st.button('1m'):
-        timeframe = "1m"
-    if st.button('3m'):
-        timeframe = "3m"
+    if st.button('6m'):
+        timeframe = "6m"
+    if st.button('4m'):
+        timeframe = "4m"
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
