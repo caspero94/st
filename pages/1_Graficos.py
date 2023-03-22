@@ -73,11 +73,12 @@ with col3:
         fromdate = st.date_input(
             "From:",
             dt.date.today() - dt.timedelta(days=2),label_visibility="collapsed")
+        st.write(fromdate)
     with date2:
         todate = st.date_input(
             "To date:",
             dt.date.today(),label_visibility="collapsed")
-
+        st.write(todate)
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
