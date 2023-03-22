@@ -3,16 +3,13 @@ import page_config
 import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
-from menu import menu_p
 import streamlit as st
 
 
 
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
-def print_menu():
-    menu_p()
-print_menu()
+st.write("GRAFICOS")
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 

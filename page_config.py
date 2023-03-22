@@ -1,6 +1,6 @@
 # Resources
 import streamlit as st
-
+from menu import menu_p
 #variables
 page_title = "Proyect X"
 page_icon = ":graph-up:"
@@ -19,3 +19,8 @@ st.markdown("""
                 }
         </style>
         """, unsafe_allow_html=True)
+def print_menu():
+    menu_p()
+
+
+print_menu()
