@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import pandas as pd
 import plotly.graph_objects as go
-import database as db 
+import pymongo
 
 #variables
 page_title = "Proyect X"
@@ -12,6 +12,26 @@ layout = "centered"
 #setting title for our app
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
 st.title(page_title + " " + page_icon)
+
+@st.cache_resource
+def init_connection():
+    return pymongo.MongoClient(**st.secrets["mongo"])
+
+client = init_connection()
+
+@st.cache_data(ttl=600)
+def get_data():
+    db = client.mydb
+    collection = ["BTC/BUSD_1m"]
+    items = db.collection.find().limit(2)
+    items = list(items)  # make hashable for st.cache_data
+    return items
+
+items = get_data()
+
+for item in items:
+    st.write(f"{item['datetime']} has a :{item['close']}:")
+
 
 # Horizontal menu
 selected = option_menu(
@@ -37,8 +57,6 @@ selected = option_menu(
 
 if selected == "Grafico":
      st.header("Grafico")
-     items = db.get_data()
-     st.write(items)
 
 
 if selected == "Obtener datos":
