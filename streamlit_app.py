@@ -25,21 +25,6 @@ def get_mongo_db():
 
     return db
 
-# Conecta a la base de datos
-db = get_mongo_db()
-
-# Selecciona la colección que deseas utilizar
-collection = db["BTC/BUSD_1m"]
-
-# Realiza una consulta a la colección
-df = pd.DataFrame(list(collection.find().limit(100)))
-df.drop(['_id','timestamp'], axis=1, inplace=True)
-df = df.set_index('datetime')
-# Muestra el resultado en tu aplicación de Streamlit
-st.write(df)
-
-
-
 # Horizontal menu
 selected = option_menu(
           menu_title=None,
@@ -63,8 +48,19 @@ selected = option_menu(
 
 
 if selected == "Grafico":
-     st.header("Grafico")
+    st.header("Grafico")
+    # Conecta a la base de datos
+    db = get_mongo_db()
 
+    # Selecciona la colección que deseas utilizar
+    collection = db["BTC/BUSD_1m"]
+
+    # Realiza una consulta a la colección
+    df = pd.DataFrame(list(collection.find().limit(100)))
+    df.drop(['_id','timestamp'], axis=1, inplace=True)
+    df = df.set_index('datetime')
+    # Muestra el resultado en tu aplicación de Streamlit
+    st.write(df)
 
 if selected == "Obtener datos":
      st.title(f"Selecionado {selected}")
