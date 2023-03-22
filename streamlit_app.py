@@ -15,15 +15,15 @@ st.title(page_title + " " + page_icon)
 
 @st.cache_resource
 def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"])
+    return pymongo.MongoClient("mongodb+srv://"**st.secrets["mongo"])
 
 client = init_connection()
 
 @st.cache_data(ttl=600)
 def get_data():
-    db = client.mydb
-    collection = ["BTC/BUSD_1m"]
-    items = db.collection.find().limit(2)
+    db = client.CryptoData
+    collection = db["BTC/BUSD_1m"]
+    items = collection.find().limit(2)
     items = list(items)  # make hashable for st.cache_data
     return items
 
