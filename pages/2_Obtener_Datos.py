@@ -1,6 +1,6 @@
 # Resources
 import streamlit as st
-import menu
+
 #variables
 page_title = "Obtener datos"
 page_icon = ":file-bar-graph-fill:"
