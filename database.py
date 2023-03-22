@@ -1,5 +1,6 @@
 import pymongo
 from pymongo import  MongoClient
+import pandas as pd
 
 cluster = MongoClient("mongodb+srv://caspero:caspero@clustercrypto.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
 
