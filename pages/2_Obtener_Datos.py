@@ -1,10 +1,6 @@
 # Resources
 import page_config
 from menu import menu_p
-#variables
-page_title = "Obtener datos"
-page_icon = ":file-bar-graph-fill:"
-layout = "centered"
 
 st.markdown("""
         <style>

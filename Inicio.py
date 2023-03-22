@@ -1,10 +1,8 @@
 # Resources
 import page_config
 from menu import menu_p
-#variables
-page_title = "Proyect X"
-page_icon = ":graph-up:"
-layout = "centered"
+
+
 
 st.markdown("""
         <style>

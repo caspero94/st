@@ -4,10 +4,6 @@ import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
 from menu import menu_p
-#variables
-page_title = "Graficos"
-page_icon = ":graph:"
-layout = "centered"
 
 st.markdown("""
         <style>
