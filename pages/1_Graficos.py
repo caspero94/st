@@ -48,7 +48,7 @@ timeframe = st.selectbox(
 
 
 # Selecciona la colección que deseas utilizar
-collection = db[par+"_"timeframe]
+collection = db[par,"_",timeframe]
 
 # Realiza una consulta a la colección
 data_activo = pd.DataFrame(list(collection.find().limit(100)))
