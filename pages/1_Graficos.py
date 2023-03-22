@@ -70,7 +70,7 @@ with st.container():
         #xaxis_title='Tiempo',
         #yaxis_title='Precio',
 
-        height = 650,
+        height = 680,
         margin=dict(l=10, r=10, t=10, b=10,pad=10),
         xaxis_rangeslider_visible=False)
     fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
