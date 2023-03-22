@@ -6,8 +6,6 @@ import plotly.graph_objects as go
 st.markdown("# Graficos")
 st.sidebar.markdown("# Graficos")
 
-
-st.title("Graficos")
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 
