@@ -1,5 +1,5 @@
 # Resources
-import streamlit as st
+import page_config
 import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
@@ -8,10 +8,6 @@ from menu import menu_p
 page_title = "Graficos"
 page_icon = ":graph:"
 layout = "centered"
-
-#setting title for our app
-st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
-st.title(page_icon + " " + page_title)
 
 st.markdown("""
         <style>
