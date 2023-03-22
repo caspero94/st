@@ -29,8 +29,8 @@ st.markdown("""
 # Horizontal menu
 selected = option_menu(
           menu_title=None,
-          options=["Graficos","Obtener datos"],
-          icons=["graph-up","file-bar-graph-fill"],
+          options=["Inicio","Graficos","Obtener datos"],
+          icons=["house","graph-up","file-bar-graph-fill"],
           menu_icon="list",
           default_index=0,
           orientation="horizontal",
