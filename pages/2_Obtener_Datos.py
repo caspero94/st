@@ -1,6 +1,6 @@
 # Resources
 import streamlit as st
-
+from menu import menu_p
 #variables
 page_title = "Obtener datos"
 page_icon = ":file-bar-graph-fill:"
@@ -9,7 +9,7 @@ layout = "centered"
 #setting title for our app
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout=layout)
 st.title(page_icon + " " + page_title)
-import menu
+
 st.markdown("""
         <style>
                .block-container {
@@ -24,3 +24,4 @@ st.markdown("""
 #st.markdown("# Obtener datos")
 #st.sidebar.markdown("# Obtener datos")
 
+menu_p()
