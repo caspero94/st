@@ -62,7 +62,7 @@ with col3:
         "To date:",
         datetime.date(datetime.today))
 with col4:
-
+    st.write("dsada")
 
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
