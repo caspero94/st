@@ -25,8 +25,8 @@ st.markdown("""
 #st.sidebar.markdown("# Inicio")
 
 with st.sidebar:
-    selected = option_menu("Inicio", ["Inicio", 'Graficos',"Obtener datos"], 
-        icons=['house', 'graph-up', "file-bar-graph-fill"], menu_icon="cast", default_index=1)
+    selected = option_menu("Inicio", [ 'Graficos',"Obtener datos"], 
+        icons=[ 'graph-up', "file-bar-graph-fill"], menu_icon="cast", default_index=1)
     selected
 
 # Horizontal menu
@@ -50,6 +50,7 @@ selected = option_menu(
             },
      )
 if selected == "Graficos":
+    st.markdown(link, unsafe_allow_html=True)
     st.title(f"Selecionado {selected}")
 
 if selected == "Obtener datos":
