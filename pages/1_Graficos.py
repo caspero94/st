@@ -32,13 +32,23 @@ db = dbmongo.get_mongo_db()
 
 # Obtener collections
 
-option = st.selectbox(
+par = st.selectbox(
     "Coin",
-    (db.list_collection_names()),label_visibility="collapsed")
+    ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
+
+timeframe_options = {
+    "1m" : "1 Minuto",
+    "3m" : "3 Minutos",
+    }
+timeframe = st.selectbox(
+    "Coin",
+    ("1m","3m"),
+    format_func = lambda x: timeframe_options.get(x),
+    label_visibility="collapsed")
 
 
 # Selecciona la colección que deseas utilizar
-collection = db[option]
+collection = db[par+"_"timeframe]
 
 # Realiza una consulta a la colección
 data_activo = pd.DataFrame(list(collection.find().limit(100)))
