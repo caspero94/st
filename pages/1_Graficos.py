@@ -6,16 +6,7 @@ import plotly.graph_objects as go
 from menu import menu_p
 import streamlit as st
 
-st.markdown("""
-        <style>
-               .block-container {
-                    padding-top: 2rem;
-                    padding-bottom: 0rem;
-                    padding-left: 0rem;
-                    padding-right: 0rem;
-                }
-        </style>
-        """, unsafe_allow_html=True)
+
 
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
