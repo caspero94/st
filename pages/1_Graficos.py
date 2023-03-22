@@ -34,7 +34,7 @@ db = dbmongo.get_mongo_db()
 
 option = st.selectbox(
     "Coin",
-    (db.list_collection_names()),label_visibility="hidden")
+    (db.list_collection_names()),label_visibility="collapsed")
 
 
 # Selecciona la colección que deseas utilizar
