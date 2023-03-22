@@ -33,7 +33,6 @@ collection = db["BTC/BUSD_1m"]
 
 # Realiza una consulta a la colección
 df = pd.DataFrame(list(collection.find().limit(100)))
-df = data.dropna()
 df.drop(['_id','timestamp'], axis=1, inplace=True)
 df = data.set_index('datetime')
 # Muestra el resultado en tu aplicación de Streamlit
