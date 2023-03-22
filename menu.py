@@ -28,4 +28,4 @@ def menu_p():
         switch_page("Graficos")
 
     if selected == "Obtener datos":
-        switch_page("Graficos")
+        switch_page("Obtener datos")
