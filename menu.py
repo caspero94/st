@@ -22,12 +22,11 @@ selected = option_menu(
             },
      )
 if selected == "Inicio":
-    
-    st.title(f"Selecionado {selected}")
+    st.write("iniciooo")
+
 if selected == "Graficos":
     switch_page("Graficos")
-    st.title(f"Selecionado {selected}")
+
 
 if selected == "Obtener datos":
     switch_page("Graficos")
-    st.title(f"Selecionado {selected}")
