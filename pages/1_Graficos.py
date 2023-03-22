@@ -86,6 +86,7 @@ collection = db[select_col]
 fromt = dt.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
 tot = dt.datetime(todate.year, todate.month, todate.day).timestamp()
 st.write(fromt)
+st.write(tot)
 data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$gte": fromt},"timestamp":{"$lt": tot}}).limit(1000)))
 
 #"$lt":ISODate(todate)
