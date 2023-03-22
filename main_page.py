@@ -34,7 +34,10 @@ selected = option_menu(
                 "nav-link-selected": {"background-color": "#470000"},
             },
      )
+if selected == "Graficos":
+    st.title(f"Selecionado {selected}")
 
-
+if selected == "Obtener datos":
+    st.title(f"Selecionado {selected}")
 
 
