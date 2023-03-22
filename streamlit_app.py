@@ -18,7 +18,7 @@ def get_mongo_db():
     username = "casper"
     password = "caspero"
     cluster = "ClusterCrypto"
-    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@{cluster}.mongodb.net/test?retryWrites=true&w=majority")
+    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@{cluster}.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
 
     # Selecciona la base de datos que deseas utilizar
     db = client["CryptoData"]
