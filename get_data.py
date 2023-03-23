@@ -60,7 +60,7 @@ def save_candles(symbol, timeframe):
             pass
              
         
-        if (len(candles)) is not 0:
+        if (len(candles)) > 0:
             st.write("if candles > 0")
             from_timestamp = int(candles['timestamp'].iloc[0] + minute)
             st.write("obtenemos from_timestamp y le sumamos 1 minuto")
