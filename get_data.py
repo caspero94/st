@@ -30,7 +30,9 @@ def save_candles(symbol, timeframe):
     st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
     candles = []
     try:
+        st.write("Try last_data")
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
+        st.write(last_data)
         from_timestamp = int(last_data['_id'].iloc[0])
         st.write(from_timestamp)
         collection.delete_many({"_id":from_timestamp}) 
