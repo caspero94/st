@@ -1,12 +1,12 @@
 # Resources
-import dbmongo
+from dbmongo import get_mongo_db
 import streamlit as st
 import ccxt
 from datetime import datetime
 import pandas as pd
 
 # Conecta a la base de datos
-db = dbmongo.get_mongo_db()
+db = get_mongo_db()
 st.write(db)
 # set exchange
 exchange = ccxt.binance({
