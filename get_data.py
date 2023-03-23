@@ -26,6 +26,7 @@ limit = 1000
 fromtime = ('2015-01-01 00:00:00')
 
 def save_candles(symbol, timeframe):
+    candles = []
     select_col = (symbol+"_"+timeframe)
     collection = db[select_col]
     from_timestamp = exchange.parse8601(fromtime)
