@@ -1,33 +1,32 @@
 # Resources
-
-import streamlit as st
-import ccxt
-from datetime import datetime
-import pandas as pd
-
-# Conecta a la base de datos
-
-
-# set exchange
-exchange = ccxt.binance({
-    'enableRateLimit':True,
-    'options': {
-        'defaultType': 'future',
-        },
-})
-st.write(exchange)
-# set variables
-now = exchange.milliseconds()
-msec = 1000
-minute = 60 * msec
-hour = 60 * minute
-limit = 1000
-fromtime = ('2015-01-01 00:00:00')
-
 def save_candles(symbol, timeframe):
+    import streamlit as st
+    import ccxt
+    from datetime import datetime
+    import pandas as pd
     import dbmongo
+    
+    # Conecta a la base de datos
     db = dbmongo.get_mongo_db()
     collection = db[symbol+"_"+timeframe]
+
+    # set exchange
+    exchange = ccxt.binance({
+        'enableRateLimit':True,
+        'options': {
+            'defaultType': 'future',
+            },
+    })
+    # set variables
+    now = exchange.milliseconds()
+    msec = 1000
+    minute = 60 * msec
+    hour = 60 * minute
+    limit = 1000
+    fromtime = ('2015-01-01 00:00:00')
+
+
+
     from_timestamp = exchange.parse8601(fromtime)
     st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
     candles = []
