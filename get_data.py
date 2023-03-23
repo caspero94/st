@@ -46,7 +46,6 @@ def save_candles(symbol, timeframe):
             st.write("Try candles = excchange fetch")
             st.write(from_timestamp)
             st.write(now)
-            st.write("from_time and now")
             candles = exchange.fetch_ohlcv(
             symbol = symbol,
             timeframe = timeframe,
