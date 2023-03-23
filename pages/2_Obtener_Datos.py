@@ -56,3 +56,10 @@ with col2:
         ("1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1D","3D","1S","1M"),
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
+with col2:
+    if st.button('Obtener datos'):
+        from get_data import save_candles
+        save_candles(
+        symbol = par, 
+        timeframe = timeframe,
+        )
