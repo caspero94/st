@@ -67,7 +67,6 @@ soupsieve==2.4
 st-annotated-text
 streamlit
 streamlit-camera-input-live
-streamlit-card
 streamlit-embedcode
 streamlit-extras
 streamlit-faker
