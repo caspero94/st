@@ -37,7 +37,7 @@ st.markdown("""
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 
-# Obtener collections
+# Menu coins
 col1, col2, col3, col4 = st.columns([1,1,2,7])
 with col1:
     par = st.selectbox(
