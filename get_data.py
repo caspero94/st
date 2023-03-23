@@ -25,7 +25,7 @@ def save_candles(symbol, timeframe):
     hour = 60 * minute
     limit = 1000
     fromtime = ('2015-01-01 00:00:00')
-
+    st.write(now)
 
 
     from_timestamp = exchange.parse8601(fromtime)
