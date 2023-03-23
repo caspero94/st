@@ -31,7 +31,7 @@ col1, col2, col3, col4 = st.columns([1,1,7,2])
 with col1:
     par = st.selectbox(
         "Coin",
-        ("BTC/BUSD","BNB/BUSD"),label_visibility="collapsed")
+        ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 with col2:
     timeframe_options = {
