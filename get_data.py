@@ -48,6 +48,7 @@ def save_candles(symbol, timeframe):
             limit = limit,
             since = from_timestamp,
             )
+            st.write("Complete candles = excchange fetch")
             header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
             df = pd.DataFrame(candles, columns = header)
             df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
