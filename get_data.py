@@ -31,6 +31,7 @@ def save_candles(symbol, timeframe):
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
+        st.write(from_timestamp)
         collection.delete_many({"_id":from_timestamp}) 
         st.write("Datos previos encontrados, actualizando desde "+ str(last_data.iloc[0]["datetime"]))
         
