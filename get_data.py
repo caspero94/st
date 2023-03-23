@@ -8,7 +8,8 @@ def save_candles(symbol, timeframe):
 
     # Conecta a la base de datos
     db = dbmongo.get_mongo_db()
-    collection = db[symbol+"_"+timeframe]
+    select_col = (symbol+"_"+timeframe)
+    collection = db[select_col]
 
     # set exchange
     exchange = ccxt.binance({
