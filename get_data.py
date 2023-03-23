@@ -27,16 +27,16 @@ fromtime = ('2015-01-01 00:00:00')
 def save_candles(symbol, timeframe):
     collection = db[symbol+"_"+timeframe]
     from_timestamp = exchange.parse8601(fromtime)
-    st.write("Starting data collection from "+ symbol+" in "+timeframe)
+    st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
         collection.delete_many({"_id":from_timestamp}) 
-        st.write("Previous data found, updating from "+ str(last_data.iloc[0]["datetime"]))
+        st.write("Datos previos encontrados, actualizando desde "+ str(last_data.iloc[0]["datetime"]))
         
 
     except:
-        st.write("No previous data, getting from start")
+        st.write("No hay datos previos, recolectando desde el inicio")
         pass    
     while(from_timestamp < now):
         try:
@@ -55,17 +55,19 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='timestamp', ascending = False)
             
         except:
-            st.write("Error Downloading data collection from "+ symbol+" in "+timeframe)
+            st.write("Error descargando datos de "+ symbol+" en "+timeframe)
             pass
              
         
         if (len(candles)) > 0:
+            st.write("if candles > 0")
             from_timestamp = int(candles['timestamp'].iloc[0] + minute)
+            st.write("obtenemos from_timestamp y le sumamos 1 minuto")
             result = collection.insert_many(candles.to_dict('records'))
             result.inserted_ids
-            st.write("Insert data in db of collection from "+ symbol+" in "+timeframe)
+            st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
         else:
-            st.write("Empty data "+symbol+"_"+timeframe)
+            st.write("Bloque de datos vacios para "+symbol+" en "+timeframe)
             from_timestamp += hour * 1000
             
-    st.write("Complete data collection from "+ symbol+" in "+timeframe)
+    st.write("Completado obtención de datos para "+ symbol+" en "+timeframe)
