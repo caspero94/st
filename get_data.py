@@ -31,11 +31,8 @@ def save_candles(symbol, timeframe):
     from_timestamp = exchange.parse8601(fromtime)
     st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
     try:
-        st.write("Try last_data")
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
-        st.write(last_data)
         from_timestamp = int(last_data['_id'].iloc[0])
-        st.write(from_timestamp)
         collection.delete_many({"_id":from_timestamp}) 
         st.write("Datos previos encontrados, actualizando desde "+ str(last_data.iloc[0]["datetime"]))
         
@@ -45,15 +42,17 @@ def save_candles(symbol, timeframe):
         pass    
     while(from_timestamp < now):
         try:
+            st.write("Try candles = excchange fetch")
             candles = exchange.fetch_ohlcv(
             symbol = symbol,
             timeframe = timeframe,
             limit = limit,
             since = from_timestamp,
             )
-            
+            st.write("add header")
             header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
             df = pd.DataFrame(candles, columns = header)
+            st.write(df)
             df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
             df.insert(1, '_id', df["timestamp"])
             st.write("Downloading data collection from "+ symbol+" in "+timeframe)
