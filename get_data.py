@@ -1,12 +1,12 @@
 # Resources
-from dbmongo import get_mongo_db
+
 import streamlit as st
 import ccxt
 from datetime import datetime
 import pandas as pd
 
 # Conecta a la base de datos
-db = get_mongo_db()
+
 st.write(db)
 # set exchange
 exchange = ccxt.binance({
@@ -25,6 +25,8 @@ limit = 1000
 fromtime = ('2015-01-01 00:00:00')
 
 def save_candles(symbol, timeframe):
+    from dbmongo import get_mongo_db
+    db = get_mongo_db()
     collection = db[symbol+"_"+timeframe]
     from_timestamp = exchange.parse8601(fromtime)
     st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
