@@ -28,6 +28,7 @@ def save_candles(symbol, timeframe):
     collection = db[symbol+"_"+timeframe]
     from_timestamp = exchange.parse8601(fromtime)
     st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
+    candles = []
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
@@ -60,7 +61,7 @@ def save_candles(symbol, timeframe):
             pass
              
         
-        if 'candles' in locals() and len(candles) > 0:
+        if (len(candles)) > 0:
             st.write("if candles > 0")
             from_timestamp = int(candles['timestamp'].iloc[0] + minute)
             st.write("obtenemos from_timestamp y le sumamos 1 minuto")
