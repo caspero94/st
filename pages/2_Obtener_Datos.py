@@ -46,8 +46,8 @@ with col2:
         "6h" : "6 Horas",
         "8h" : "8 Horas",
         "12h" : "12 Horas",
-        "1D" : "1 Dia",
-        "3D" : "3 Dias",
+        "1d" : "1 Dia",
+        "3d" : "3 Dias",
         "1S" : "1 Semana",
         "1M" : "1 Mes",
         }
