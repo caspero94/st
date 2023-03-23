@@ -59,7 +59,6 @@ with col2:
 with col3:
     if st.button('Obtener datos'):
         from get_data import save_candles
-        st.write(par+"_"+timeframe)
         save_candles(
         symbol = par, 
         timeframe = timeframe,
