@@ -82,19 +82,14 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección
-#fromt = datetime.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
-#tot = datetime.datetime(todate.year, todate.month, todate.day).timestamp()
-#data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$lt": fromt}}).limit(1000)))
 from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
 to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
-st.write(fromdate,todate)
-st.write(from_datetime, to_datetime)
-#query = {"datetime": {"$gte": from_datetime, "$lt": to_datetime}}
 data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
-st.write(data_activo)
 
-#data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
-#data_activo = data_activo.set_index('datetime')
+
+data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
+data_activo = data_activo.set_index('datetime')
+st.write(data_activo)
 # Muestra el resultado en tu aplicación de Streamlit
 with st.container():
     fig = go.Figure()
