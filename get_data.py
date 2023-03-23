@@ -39,7 +39,6 @@ def save_candles(symbol, timeframe):
         st.write("No hay datos previos, recolectando desde el inicio")
         pass    
     while(from_timestamp < now):
-        candles = 0
         try:
             candles = exchange.fetch_ohlcv(
             symbol = symbol,
