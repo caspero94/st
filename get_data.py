@@ -5,7 +5,7 @@ def save_candles(symbol, timeframe):
     from datetime import datetime
     import pandas as pd
     import dbmongo
-
+    import pymongo
     # Conecta a la base de datos
     db = dbmongo.get_mongo_db()
     select_col = (symbol+"_"+timeframe)
