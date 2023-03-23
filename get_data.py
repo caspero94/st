@@ -42,27 +42,27 @@ def save_candles(symbol, timeframe):
         st.write("No hay datos previos, recolectando desde el inicio")
         pass    
     while(from_timestamp < now):
-        try:
-            st.write("Try candles = excchange fetch")
-            st.write(from_timestamp)
-            st.write(now)
-            candles = exchange.fetch_ohlcv(
-            symbol = symbol,
-            timeframe = timeframe,
-            limit = limit,
-            since = from_timestamp,
-            )
-            st.write("Complete candles = excchange fetch")
-            header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-            df = pd.DataFrame(candles, columns = header)
-            df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
-            df.insert(1, '_id', df["timestamp"])
-            st.write("Downloading data collection from "+ symbol+" in "+timeframe)
-            candles = df.sort_values(by='timestamp', ascending = False)
-            
-        except:
-            st.write("Error descargando datos de "+ symbol+" en "+timeframe)
-            pass
+        
+        st.write("Try candles = excchange fetch")
+        st.write(from_timestamp)
+        st.write(now)
+        candles = exchange.fetch_ohlcv(
+        symbol = symbol,
+        timeframe = timeframe,
+        limit = limit,
+        since = from_timestamp,
+        )
+        st.write("Complete candles = excchange fetch")
+        header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+        df = pd.DataFrame(candles, columns = header)
+        df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
+        df.insert(1, '_id', df["timestamp"])
+        st.write("Downloading data collection from "+ symbol+" in "+timeframe)
+        candles = df.sort_values(by='timestamp', ascending = False)
+        
+    
+        st.write("Error descargando datos de "+ symbol+" en "+timeframe)
+        pass
              
         
         if (len(candles)) > 0:
