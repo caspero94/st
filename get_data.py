@@ -68,7 +68,7 @@ def save_candles(symbol, timeframe):
             result.inserted_ids
             st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
         else:
-            st.write("Bloque de datos vacios para "+symbol+" en "+timeframe)
+            st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ from_timestamp)
             from_timestamp += hour * 1000
             
     st.write("Completado obtención de datos para "+ symbol+" en "+timeframe)
