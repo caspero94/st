@@ -7,7 +7,7 @@ import pandas as pd
 
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
-
+st.write(db)
 # set exchange
 exchange = ccxt.binance({
     'enableRateLimit':True,
@@ -15,7 +15,7 @@ exchange = ccxt.binance({
         'defaultType': 'future',
         },
 })
-
+st.write(exchange)
 # set variables
 now = exchange.milliseconds()
 msec = 1000
