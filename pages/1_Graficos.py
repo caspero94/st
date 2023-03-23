@@ -82,13 +82,14 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección
-fromt = dt.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
-tot = dt.datetime(todate.year, todate.month, todate.day).timestamp()
-st.write(fromt)
-st.write(tot)
-data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$lt": fromt}}).limit(1000)))
+#fromt = dt.datetime(fromdate.year, fromdate.month, fromdate.day).timestamp()
+#tot = dt.datetime(todate.year, todate.month, todate.day).timestamp()
+#data_activo = pd.DataFrame(list(collection.find({"timestamp":{"$lt": fromt}}).limit(1000)))
 
-#"$lt":ISODate(todate)
+query = {"datetime": {"$gte": fromdate, "$lt": todate}}
+data_activo = pd.DataFrame(list(collection.find(query)))
+st.write(data_activo)
+
 #data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
 #data_activo = data_activo.set_index('datetime')
 # Muestra el resultado en tu aplicación de Streamlit
