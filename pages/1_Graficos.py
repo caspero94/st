@@ -81,15 +81,15 @@ with col3:
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
-# Realiza una consulta a la colección
+# Realiza una consulta a la colección filtrada por fechas
 from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
 to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
 
-
+# Eliminamos columnas inecesarias
 data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
 #data_activo = data_activo.set_index('datetime')
-st.write(data_activo)
+
 # Muestra el resultado en tu aplicación de Streamlit
 with st.container():
     fig = go.Figure()
