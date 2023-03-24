@@ -92,7 +92,7 @@ with col4:
 
     with mensaje:    
         with st.empty():
-            if not pressbt == 1:
+            if not (pressbt == 1):
                 st.warning("Datos pendientes de actualizar")
                 st.stop()
             st.success("Datos actualizados "+par+" en "+timeframe)
