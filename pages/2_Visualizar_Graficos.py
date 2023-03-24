@@ -81,7 +81,7 @@ with col3:
 with col4:
     boton, mensaje = st.columns([1,3])
     with boton:
-        pressbt = 0
+        pressbt = ()
         if st.button('Actualizar datos'):
                 from get_data import save_candles
                 with st.empty():
@@ -92,9 +92,10 @@ with col4:
 
     with mensaje:    
         with st.empty():
-            st.write("Datos pendientes de actualizar")
-            if (pressbt == 1):
-                st.write("Datos actualizados "+par+" en "+timeframe)
+            if not pressbt:
+                st.warning("Datos pendientes de actualizar")
+                st.stop()
+            st.success("Datos actualizados "+par+" en "+timeframe)
     
 
 
