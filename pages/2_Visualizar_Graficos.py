@@ -84,10 +84,11 @@ with col4:
         pressbt = 0
         if st.button('Actualizar datos'):
                 from get_data import save_candles
-                save_candles(
-                symbol = par, 
-                timeframe = timeframe,
-                )
+                with st.empty():
+                    save_candles(
+                    symbol = par, 
+                    timeframe = timeframe,
+                    )
 
     with mensaje:    
         with st.empty():
