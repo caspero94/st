@@ -133,7 +133,7 @@ if (len(data_activo)) > 0:
         fig.update_layout(
             #xaxis_title='Tiempo',
             #yaxis_title='Precio',
-            yaxis={'side': 'right'
+            yaxis={'side': 'right'}
             height = 800,
             margin=dict(l=0, r=0, t=0, b=0,pad=0),
             xaxis_rangeslider_visible=False)
