@@ -70,3 +70,5 @@ def save_candles(symbol, timeframe):
             from_timestamp += hour * 1000
             
     st.success("Proceso de actualización completado para "+ symbol+" en "+timeframe)
+    pressbt = 1
+    return pressbt
