@@ -24,5 +24,8 @@ st.markdown("""
 #st.markdown("# Inicio")
 #st.sidebar.markdown("# Inicio")
 
-
-
+st.header("Proyecto en desarrollo")
+st.write("Objetivos:")
+st.write("1: Plataforma para visualizar datos de activos")
+st.write("2: Plataforma para obtener datos actualizados de activos")
+st.write("3: Plataforma para testear estrategias con los datos de activos")
