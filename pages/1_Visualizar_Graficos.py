@@ -85,12 +85,12 @@ with col3:
         "1w" : 720,
         "1M" : 1440,
         }
-    wdays = (lambda timeframe: timeframe_days.get(timeframe))
+    #wdays = (lambda timeframe: timeframe_days.get(timeframe))
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
             "From:",
-            datetime.date.today() - datetime.timedelta(days=wdays),label_visibility="collapsed")
+            datetime.date.today() - datetime.timedelta(days=0),label_visibility="collapsed")
     with date2:
         todate = st.date_input(
             "To date:",
