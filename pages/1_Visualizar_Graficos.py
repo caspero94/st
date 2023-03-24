@@ -38,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Menu coins
-col1, col2, col3, col4, col5 = st.columns([1,1,2,2,3])
+col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
 with col1:
     par = st.selectbox(
         "Coin",
@@ -77,18 +77,18 @@ with col3:
         todate = st.date_input(
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
+
 with col4:
-    st.empty()
-with col5:
     with st.empty():
-        if st.button('Actualizar datos'):
+        if st.button('Actualizar datos', use_container_width=True):
                 from get_data import save_candles
                 save_candles(
                 symbol = par, 
                 timeframe = timeframe,
                 )
         
-
+with col5:
+    st.empty()
 
 
 
