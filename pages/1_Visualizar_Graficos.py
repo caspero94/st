@@ -68,6 +68,24 @@ with col2:
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
 with col3:
+    timeframe_days = {
+        "1m" : 0,
+        "3m" : 1,
+        "5m" : 2,
+        "15m" : 5,
+        "30m" : 7,
+        "1h" : 14,
+        "2h" : 30,
+        "4h" : 60,
+        "6h" : 80,
+        "8h" : 100,
+        "12h" : 120,
+        "1d" : 240,
+        "3d" : 360,
+        "1w" : 720,
+        "1M" : 1440,
+        }
+    wdays = timeframe(lambda x: timeframe_days.get(x))
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
