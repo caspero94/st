@@ -87,7 +87,7 @@ with col4:
         )
 with col5:
     with st.empty:
-        st.write(mensaje)
+        st(mensaje)
 
 
 
