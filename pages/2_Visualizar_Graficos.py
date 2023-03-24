@@ -87,8 +87,8 @@ with col4:
             symbol = par, 
             timeframe = timeframe,
             )
-        if (pressbt == 1):
-            st.write("Datos actualizados")
+            if (pressbt == 1):
+                st.write("Datos actualizados")
     
 
 
