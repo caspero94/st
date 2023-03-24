@@ -69,6 +69,6 @@ def save_candles(symbol, timeframe):
             #st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
             from_timestamp += hour * 1000
             
-    st.success("Proceso de actualización completado para "+ symbol+" en "+timeframe)
+    st.success("Actualización completada para "+ symbol+" en "+timeframe)
     pressbt = 1
     return pressbt
