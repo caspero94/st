@@ -30,6 +30,7 @@ def save_candles(symbol, timeframe):
     select_col = (symbol+"_"+timeframe)
     collection = db[select_col]
     from_timestamp = exchange.parse8601(fromtime)
+    mensaje = st.empty()
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
