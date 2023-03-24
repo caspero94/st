@@ -38,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Menu coins
-col1, col2, col3, col4 = st.columns([1,1,2,5])
+col1, col2, col3, col4, col5 = st.columns([1,1,2,2,4])
 with col1:
     par = st.selectbox(
         "Coin",
