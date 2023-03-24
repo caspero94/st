@@ -30,16 +30,15 @@ def save_candles(symbol, timeframe):
     select_col = (symbol+"_"+timeframe)
     collection = db[select_col]
     from_timestamp = exchange.parse8601(fromtime)
-    mensaje = st.empty()
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
         collection.delete_many({"_id":from_timestamp}) 
-        mensaje = st.info("Actualizando datos de "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["datetime"]))
+        st.info("Actualizando datos de "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["datetime"]))
         
 
     except:
-        mensaje = st.info("Actualizando datos de "+ symbol+" en "+timeframe+" desde el inicio")
+        st.info("Actualizando datos de "+ symbol+" en "+timeframe+" desde el inicio")
         pass    
     while(from_timestamp < now):
         try:
@@ -57,7 +56,7 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='timestamp', ascending = False)
             
         except:    
-            mensaje = st.error("Error obteniendo datos de "+ symbol+" en "+timeframe)
+            st.error("Error obteniendo datos de "+ symbol+" en "+timeframe)
             pass
              
         
@@ -70,4 +69,4 @@ def save_candles(symbol, timeframe):
             #st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
             from_timestamp += hour * 1000
             
-    mensaje = st.success("Proceso de actualización completado para "+ symbol+" en "+timeframe)
+    st.success("Proceso de actualización completado para "+ symbol+" en "+timeframe)
