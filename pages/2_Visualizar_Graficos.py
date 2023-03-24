@@ -79,24 +79,14 @@ with col3:
             datetime.date.today(),label_visibility="collapsed")
 
 with col4:
-    boton, mensaje = st.columns([1,3])
-    with boton:
-        pressbt = ()
+    with st.empty():
         if st.button('Actualizar datos'):
                 from get_data import save_candles
-                with st.empty():
-                    save_candles(
-                    symbol = par, 
-                    timeframe = timeframe,
-                    )
-
-    with mensaje:    
-        with st.empty():
-            if not (pressbt == 1):
-                st.warning("Datos pendientes de actualizar")
-                st.stop()
-            st.success("Datos actualizados "+par+" en "+timeframe)
-    
+                save_candles(
+                symbol = par, 
+                timeframe = timeframe,
+                )
+        
 
 
 
