@@ -27,7 +27,7 @@ st.markdown("""
 #st.sidebar.markdown("# Obtener datos")
 
 
-col1, col2, col3, col4 = st.columns([1,1,7,2])
+col1, col2, col3 = st.columns([1,1,5])
 with col1:
     par = st.selectbox(
         "Coin",
@@ -63,5 +63,4 @@ with col3:
         symbol = par, 
         timeframe = timeframe,
         )
-with col4:
-    st.write("OBTENER DATOS")
+
