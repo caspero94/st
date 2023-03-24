@@ -92,6 +92,7 @@ with col4:
 
     with mensaje:    
         with st.empty():
+            st.write("Datos pendientes de actualizar")
             if (pressbt == 1):
                 st.write("Datos actualizados "+par+" en "+timeframe)
     
