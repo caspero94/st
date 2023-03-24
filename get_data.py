@@ -53,7 +53,7 @@ def save_candles(symbol, timeframe):
             df = pd.DataFrame(candles, columns = header)
             df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
             df.insert(1, '_id', df["timestamp"])
-            st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
+            #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
             candles = df.sort_values(by='timestamp', ascending = False)
             
         except:    
@@ -65,9 +65,9 @@ def save_candles(symbol, timeframe):
             from_timestamp = int(candles['timestamp'].iloc[0] + minute)
             result = collection.insert_many(candles.to_dict('records'))
             result.inserted_ids
-            st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
+            #st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
         else:
-            st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
+            #st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
             from_timestamp += hour * 1000
             
-    st.write("Completado obtención de datos para "+ symbol+" en "+timeframe)
+    st.write("Datos actualizados para "+ symbol+" en "+timeframe)

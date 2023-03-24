@@ -79,7 +79,7 @@ with col3:
             datetime.date.today(),label_visibility="collapsed")
 
 with col4:
-    if st.button('Obtener datos'):
+    if st.button('Actualizar datos'):
         from get_data import save_candles
         save_candles(
         symbol = par, 
