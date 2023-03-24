@@ -144,4 +144,4 @@ if (len(data_activo)) > 0:
         configs = dict({'scrollZoom': False,'displaylogo': False} )
         st.plotly_chart(fig,use_container_width=True,config=configs)
 else:
-    st.write("No se encontraron datos disponibles para este activo y fechas")
+    st.info("No se encontraron datos disponibles para este activo y fechas")

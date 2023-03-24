@@ -38,7 +38,7 @@ def save_candles(symbol, timeframe):
         
 
     except:
-        st.info("Actualizando datos de "+ symbol+" en "+timeframe+" desde el inicio")
+        st.info("Actualizando datos de "+ symbol+" en "+timeframe)
         pass    
     while(from_timestamp < now):
         try:
@@ -56,7 +56,7 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='timestamp', ascending = False)
             
         except:    
-            st.error("Error obteniendo datos de "+ symbol+" en "+timeframe)
+            st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
             pass
              
         
@@ -69,6 +69,6 @@ def save_candles(symbol, timeframe):
             #st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
             from_timestamp += hour * 1000
             
-    st.success("Actualización completada para "+ symbol+" en "+timeframe)
+    st.success("Datos actualizados para "+ symbol+" en "+timeframe)
     pressbt = 1
     return pressbt
