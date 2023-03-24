@@ -68,15 +68,16 @@ with col2:
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
 with col3:
-    date1, date2 = st.columns(2)
-    with date1:
-        fromdate = st.date_input(
-            "From:",
-            datetime.date.today() - datetime.timedelta(days=7),label_visibility="collapsed")
-    with date2:
-        todate = st.date_input(
-            "To date:",
-            datetime.date.today(),label_visibility="collapsed")
+    if st.button('Obtener datos'):
+        date1, date2 = st.columns(2)
+        with date1:
+            fromdate = st.date_input(
+                "From:",
+                datetime.date.today() - datetime.timedelta(days=7),label_visibility="collapsed")
+        with date2:
+            todate = st.date_input(
+                "To date:",
+                datetime.date.today(),label_visibility="collapsed")
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
