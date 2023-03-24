@@ -22,7 +22,7 @@ st.markdown("""
                     padding-top: 2rem;
                     padding-bottom: 0rem;
                     padding-left: 1rem;
-                    padding-right: 2rem;
+                    padding-right: 3rem;
                 }
                 button[title="View fullscreen"] {
                     visibility: hidden;
@@ -100,7 +100,7 @@ if (len(data_activo)) > 0:
             #xaxis_title='Tiempo',
             #yaxis_title='Precio',
 
-            height = 850,
+            height = 800,
             margin=dict(l=0, r=0, t=0, b=0,pad=0),
             xaxis_rangeslider_visible=False)
         #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
