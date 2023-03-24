@@ -38,7 +38,7 @@ st.markdown("""
 db = dbmongo.get_mongo_db()
 
 # Menu coins
-col1, col2, col3, col4 = st.columns([1,1,2,7])
+col1, col2, col3, col4 = st.columns([1,1,2,5])
 with col1:
     par = st.selectbox(
         "Coin",
@@ -77,6 +77,19 @@ with col3:
         todate = st.date_input(
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
+
+with col4:
+    if st.button('Obtener datos'):
+        from get_data import save_candles
+        save_candles(
+        symbol = par, 
+        timeframe = timeframe,
+        )
+
+
+
+
+
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
