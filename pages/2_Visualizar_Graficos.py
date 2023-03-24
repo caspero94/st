@@ -80,8 +80,9 @@ with col3:
 
 with col4:
     with st.empty():
+        pressbt = 0
         if st.button('Actualizar datos'):
-            pressbt = int(1)
+            pressbt = 1
             from get_data import save_candles
             save_candles(
             symbol = par, 
