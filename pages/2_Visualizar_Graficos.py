@@ -85,6 +85,8 @@ with col4:
         symbol = par, 
         timeframe = timeframe,
         )
+with col5:
+    st(mensaje)
 
 
 
