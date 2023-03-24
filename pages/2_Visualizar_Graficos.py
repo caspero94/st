@@ -86,7 +86,8 @@ with col4:
         timeframe = timeframe,
         )
 with col5:
-    st(mensaje)
+    with st.empty:
+        st.write(mensaje)
 
 
 
