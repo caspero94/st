@@ -85,24 +85,28 @@ collection = db[select_col]
 from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
 to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
-# Eliminamos columnas inecesarias
-data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
-#data_activo = data_activo.set_index('datetime')
-# Muestra el resultado en tu aplicación de Streamlit
-with st.container():
-    fig = go.Figure()
+if (len(data_activo)) > 0:
+        
+    # Eliminamos columnas inecesarias
+    data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
+    #data_activo = data_activo.set_index('datetime')
+    # Muestra el resultado en tu aplicación de Streamlit
+    with st.container():
+        fig = go.Figure()
 
-    fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-    #fig.add_trace(go.Histogram(x=data_activo[7]))
-    fig.update_layout(
-        #xaxis_title='Tiempo',
-        #yaxis_title='Precio',
+        fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+        #fig.add_trace(go.Histogram(x=data_activo[7]))
+        fig.update_layout(
+            #xaxis_title='Tiempo',
+            #yaxis_title='Precio',
 
-        #height = 700,
-        margin=dict(l=0, r=0, t=0, b=0,pad=0),
-        xaxis_rangeslider_visible=False)
-    #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
-    #fig.update_xaxes(automargin='left+right')
-    #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
-    configs = dict({'scrollZoom': False,'displaylogo': False} )
-    st.plotly_chart(fig,use_container_width=True,config=configs)
+            #height = 700,
+            margin=dict(l=0, r=0, t=0, b=0,pad=0),
+            xaxis_rangeslider_visible=False)
+        #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
+        #fig.update_xaxes(automargin='left+right')
+        #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
+        configs = dict({'scrollZoom': False,'displaylogo': False} )
+        st.plotly_chart(fig,use_container_width=True,config=configs)
+else:
+    st.write("No se encontraron datos disponibles para eeste activo y fechas")
