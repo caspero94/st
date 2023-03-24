@@ -87,9 +87,9 @@ to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
 
 # Eliminamos columnas inecesarias
-data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
+#data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
 #data_activo = data_activo.set_index('datetime')
-
+st.write(data_activo)
 # Muestra el resultado en tu aplicación de Streamlit
 with st.container():
     fig = go.Figure()
