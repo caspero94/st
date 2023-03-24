@@ -132,6 +132,7 @@ if (len(data_activo)) > 0:
         #fig.add_trace(go.Histogram(x=data_activo[7]))
         fig.update_layout(
             #xaxis_title='Tiempo',
+            xaxis={'side': 'top'},
             #yaxis_title='Precio',
             yaxis={'side': 'right'},
             height = 800,
