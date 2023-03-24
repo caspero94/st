@@ -48,12 +48,12 @@ with col2:
         "12h" : "12 Horas",
         "1d" : "1 Dia",
         "3d" : "3 Dias",
-        "1S" : "1 Semana",
+        "1w" : "1 Semana",
         "1M" : "1 Mes",
         }
     timeframe = st.selectbox(
         "Coin",
-        ("1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1d","3d","1S","1M"),
+        ("1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1d","3d","1w","1M"),
         format_func = lambda x: timeframe_options.get(x),
         label_visibility="collapsed")
 with col3:
