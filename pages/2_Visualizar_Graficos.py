@@ -81,12 +81,14 @@ with col3:
 with col4:
     with st.empty():
         if st.button('Actualizar datos'):
+            pressbt = 1
             from get_data import save_candles
             save_candles(
             symbol = par, 
             timeframe = timeframe,
             )
-        st.write("Datos actualizados")
+        if pressbt == 1:
+            st.write("Datos actualizados")
     
 
 
