@@ -30,16 +30,15 @@ def save_candles(symbol, timeframe):
     select_col = (symbol+"_"+timeframe)
     collection = db[select_col]
     from_timestamp = exchange.parse8601(fromtime)
-    st.write("Iniciando recoleccion de datos de "+ symbol+" en "+timeframe)
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
         collection.delete_many({"_id":from_timestamp}) 
-        st.write("Datos previos encontrados, actualizando desde "+ str(last_data.iloc[0]["datetime"]))
+        st.write("Actualizando datos de "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["datetime"]))
         
 
     except:
-        st.write("No hay datos previos, recolectando desde el inicio")
+        st.write("Actualizando datos de "+ symbol+" en "+timeframe+" desde el inicio")
         pass    
     while(from_timestamp < now):
         try:
@@ -57,7 +56,7 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='timestamp', ascending = False)
             
         except:    
-            st.write("Error descargando datos de "+ symbol+" en "+timeframe)
+            st.error("Error obteniendo datos de "+ symbol+" en "+timeframe)
             pass
              
         
