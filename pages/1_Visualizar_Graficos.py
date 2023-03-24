@@ -65,7 +65,7 @@ with col2:
     timeframe = st.selectbox(
         "Coin",
         ("1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1d","3d","1w","1M"),
-        format_func = lambda x: timeframe_options.get(x),
+        format_func = lambda x: timeframe_options.get(x), key=timeframes,
         label_visibility="collapsed")
 with col3:
     timeframe_days = {
@@ -85,7 +85,7 @@ with col3:
         "1w" : 720,
         "1M" : 1440,
         }
-    wdays = (lambda timeframe: timeframe_days.get(timeframe))
+    wdays = (lambda timeframes: timeframe_days.get(timeframes))
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
