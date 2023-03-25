@@ -122,8 +122,9 @@ to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 # Realiza una consulta a la colección filtrada por fechas
 @st.cache_data(ttl=600)
 def getdata():
-    data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
-    return data_activo
+    data_activocache = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
+    return data_activocache
+data_activo = getdata()
 if (len(data_activo)) > 0:
         
     # Eliminamos columnas inecesarias
