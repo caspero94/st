@@ -2,7 +2,7 @@
 import streamlit as st
 
 #variables
-page_title = "Test Estragia"
+page_title = "Operar Estrategia"
 page_icon = ":bar_chart:"
 layout = "wide"
 
