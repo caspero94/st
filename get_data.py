@@ -34,7 +34,7 @@ def save_candles(symbol, timeframe):
         last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
         collection.delete_many({"_id":from_timestamp}) 
-        st.info("Actualizando datos de "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["datetime"]))
+        st.info("Actualizando "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["datetime"]))
         
 
     except:
