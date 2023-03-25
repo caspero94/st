@@ -86,6 +86,7 @@ with col3:
         "1M" : 1440,
         }
     x = timeframe
+    st.write(x)
     wdays = lambda x: timeframe_days.get(x)
     st.write(wdays)
     date1, date2 = st.columns(2)
