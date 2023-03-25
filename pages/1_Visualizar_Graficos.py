@@ -45,47 +45,37 @@ with col1:
         ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 with col2:
-    timeframe_options = {
-        "1m" : "1 Minuto",
-        "3m" : "3 Minutos",
-        "5m" : "5 Minutos",
-        "15m" : "15 Minutos",
-        "30m" : "30 Minutos",
-        "1h" : "1 Hora",
-        "2h" : "2 Horas",
-        "4h" : "4 Horas",
-        "6h" : "6 Horas",
-        "8h" : "8 Horas",
-        "12h" : "12 Horas",
-        "1d" : "1 Dia",
-        "3d" : "3 Dias",
-        "1w" : "1 Semana",
-        "1M" : "1 Mes",
-        }
+    timeframe_dict = {
+    "1m": ("1 Minuto", 0),
+    "3m": ("3 Minutos", 1),
+    "5m": ("5 Minutos", 2),
+    "15m": ("15 Minutos", 5),
+    "30m": ("30 Minutos", 7),
+    "1h": ("1 Hora", 14),
+    "2h": ("2 Horas", 30),
+    "4h": ("4 Horas", 60),
+    "6h": ("6 Horas", 80),
+    "8h": ("8 Horas", 100),
+    "12h": ("12 Horas", 120),
+    "1d": ("1 Dia", 240),
+    "3d": ("3 Dias", 360),
+    "1w": ("1 Semana", 720),
+    "1M": ("1 Mes", 1440),
+    }
+    
+    timeframe_options = [timeframe_dict[key][0] for key in timeframe_dict]
+    timeframe_values = [key for key in timeframe_dict]
+
     timeframe = st.selectbox(
         "Coin",
-        ("1m","3m","5m","15m","30m","1h","2h","4h","6h","8h","12h","1d","3d","1w","1M"),
-        format_func = lambda x: timeframe_options.get(x), 
-        label_visibility="collapsed")
+        timeframe_values,
+        format_func=lambda x: timeframe_dict[x][0],
+        label_visibility="collapsed"
+    )
+    timeframe_value = timeframe_dict[timeframe][1]
+
 with col3:
-    timeframe_days = {
-        "1m" : 1,
-        "3m" : 2,
-        "5m" : 3,
-        "15m" : 5,
-        "30m" : 7,
-        "1h" : 14,
-        "2h" : 30,
-        "4h" : 60,
-        "6h" : 80,
-        "8h" : 100,
-        "12h" : 120,
-        "1d" : 240,
-        "3d" : 360,
-        "1w" : 720,
-        "1M" : 1440,
-        }
-    timeframe_value = timeframe_days.get(timeframe)
+    
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
