@@ -35,10 +35,7 @@ st.markdown("""
 #st.sidebar.markdown("# Graficos")
 
 # Conecta a la base de datos
-@st.cache_resource
-def init_connection():
-    db = dbmongo.get_mongo_db()
-    return db
+db = dbmongo.get_mongo_db()
 
 # Menu coins
 col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
