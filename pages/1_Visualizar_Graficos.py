@@ -38,7 +38,7 @@ st.markdown("""
 @st.cache_resource
 def init_connection():
     db = dbmongo.get_mongo_db()
-    return
+    return db
 
 # Menu coins
 col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
