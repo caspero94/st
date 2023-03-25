@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import streamlit as st
 @st.cache_resource
 def get_mongo_db():
     # Configura tu conexión a la base de datos de MongoDB Atlas
