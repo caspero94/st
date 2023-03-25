@@ -38,7 +38,7 @@ def save_candles(symbol, timeframe):
         
 
     except:
-        st.info("Actualizando datos de "+ symbol+" en "+timeframe)
+        st.info("Actualizando "+ symbol+" en "+timeframe+" desde el incio")
         pass    
     while(from_timestamp < now):
         try:
