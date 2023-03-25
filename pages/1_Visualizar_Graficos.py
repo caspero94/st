@@ -35,7 +35,10 @@ st.markdown("""
 #st.sidebar.markdown("# Graficos")
 
 # Conecta a la base de datos
-db = dbmongo.get_mongo_db()
+@st.cache_resource
+def init_connection():
+    db = dbmongo.get_mongo_db()
+    return
 
 # Menu coins
 col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
@@ -115,9 +118,11 @@ with col4:
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
-# Realiza una consulta a la colección filtrada por fechas
+# Formateamos fechas para consulta en base datos
 from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
 to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
+
+# Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
 if (len(data_activo)) > 0:
         
