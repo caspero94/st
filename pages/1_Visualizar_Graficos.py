@@ -46,21 +46,21 @@ with col1:
 
 with col2:
     timeframe_dict = {
-    "1m": ("1 Minuto", 1),
-    "3m": ("3 Minutos", 3),
-    "5m": ("5 Minutos", 5),
-    "15m": ("15 Minutos", 15),
-    "30m": ("30 Minutos", 30),
-    "1h": ("1 Hora", 60),
-    "2h": ("2 Horas", 120),
-    "4h": ("4 Horas", 240),
-    "6h": ("6 Horas", 360),
-    "8h": ("8 Horas", 480),
-    "12h": ("12 Horas", 720),
-    "1d": ("1 Dia", 1440),
-    "3d": ("3 Dias", 4320),
-    "1w": ("1 Semana", 10080),
-    "1M": ("1 Mes", 43200),
+    "1m": ("1 Minuto", 0),
+    "3m": ("3 Minutos", 1),
+    "5m": ("5 Minutos", 3),
+    "15m": ("15 Minutos", 5),
+    "30m": ("30 Minutos", 10),
+    "1h": ("1 Hora", 20),
+    "2h": ("2 Horas", 40),
+    "4h": ("4 Horas", 80),
+    "6h": ("6 Horas", 120),
+    "8h": ("8 Horas", 160),
+    "12h": ("12 Horas", 240),
+    "1d": ("1 Dia", 480),
+    "3d": ("3 Dias", 1440),
+    "1w": ("1 Semana", 3360),
+    "1M": ("1 Mes", 14400),
     }
     
     timeframe_options = [timeframe_dict[key][0] for key in timeframe_dict]
