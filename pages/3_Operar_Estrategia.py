@@ -5,9 +5,9 @@ import streamlit as st
 page_title = "Test Estragia"
 page_icon = ":bar_chart:"
 layout = "wide"
-page_title=page_title, page_icon=page_icon,
+
 #setting title for our app
-st.set_page_config( layout=layout,)
+st.set_page_config( layout=layout,page_title=page_title, page_icon=page_icon)
 #st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
