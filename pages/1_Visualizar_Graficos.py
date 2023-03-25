@@ -69,9 +69,9 @@ with col2:
         label_visibility="collapsed")
 with col3:
     timeframe_days = {
-        "1m" : 0,
-        "3m" : 1,
-        "5m" : 2,
+        "1m" : 1,
+        "3m" : 2,
+        "5m" : 3,
         "15m" : 5,
         "30m" : 7,
         "1h" : 14,
@@ -86,12 +86,11 @@ with col3:
         "1M" : 1440,
         }
     timeframe_value = timeframe_days.get(timeframe)
-    st.write(timeframe_value)
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
             "From:",
-            datetime.date.today() - datetime.timedelta(days=1),label_visibility="collapsed")
+            datetime.date.today() - datetime.timedelta(days=timeframe_value),label_visibility="collapsed")
     with date2:
         todate = st.date_input(
             "To date:",
