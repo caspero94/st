@@ -120,17 +120,14 @@ from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time()
 to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
 # Realiza una consulta a la colección filtrada por fechas
-@st.cache_data(ttl=600)
-def getdata():
-    data_activocache = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
-    return data_activocache
-data_activo = getdata()
+data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
+
+# Comprobamos si data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
         
     # Eliminamos columnas inecesarias
     data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
     #data_activo = data_activo.set_index('datetime')
-    # Muestra el resultado en tu aplicación de Streamlit
     with st.container():
         fig = go.Figure()
 
