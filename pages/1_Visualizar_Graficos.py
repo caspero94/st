@@ -47,8 +47,8 @@ with col1:
 with col2:
     timeframe_dict = {
     "1m": ("1 Minuto", 0),
-    "3m": ("3 Minutos", 1),
-    "5m": ("5 Minutos", 2),
+    "3m": ("3 Minutos", 0),
+    "5m": ("5 Minutos", 1),
     "15m": ("15 Minutos", 3),
     "30m": ("30 Minutos", 5),
     "1h": ("1 Hora", 10),
