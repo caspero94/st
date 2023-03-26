@@ -54,7 +54,7 @@ def save_candles(symbol, timeframe):
         #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
         #df.insert(1, '_id', df["timestamp"])
         #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
-        candles = df.sort_values(by='timestamp', ascending = True)
+        candles = df.sort_values(by='_id', ascending = True)
             
         #except:    
             #st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
