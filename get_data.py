@@ -42,12 +42,12 @@ def save_candles(symbol, timeframe):
         pass    
     while(from_timestamp < now):
         #try:
-        candles = exchange.fetch_ohlcv(
+        '''candles = exchange.fetch_ohlcv(
         symbol = symbol,
         timeframe = timeframe,
         limit = limit,
         since = from_timestamp,
-        )
+        )'''
         header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
         df = pd.DataFrame(candles, columns = header)
         st.write(df)
