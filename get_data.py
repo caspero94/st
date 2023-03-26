@@ -36,29 +36,28 @@ def save_candles(symbol, timeframe):
         st.info("Actualizando "+ symbol+" en "+timeframe+" desde el incio")
         pass    
     while(from_timestamp < now):
-        #try:
-        candles = exchange.fetch_ohlcv(symbol = symbol,timeframe = timeframe,limit = limit,since = from_timestamp,)
-        header = ['_id', 'open', 'high', 'low', 'close', 'volume']
-        df = pd.DataFrame(candles, columns = header)
-        st.write(df)
+        try:
+            candles = exchange.fetch_ohlcv(symbol = symbol,timeframe = timeframe,limit = limit,since = from_timestamp,)
+            header = ['_id', 'open', 'high', 'low', 'close', 'volume']
+            df = pd.DataFrame(candles, columns = header)
 
-        #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
-        #df.insert(1, '_id', df["timestamp"])
-        #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
-        candles = df.sort_values(by='_id', ascending = True)
+            #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
+            #df.insert(1, '_id', df["timestamp"])
+            st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
+            candles = df.sort_values(by='_id', ascending = True)
             
-        #except:    
-            #st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
-        #    pass
+        except:    
+            st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
+            pass
              
         
         if (len(candles)) > 0:
             from_timestamp = int(df['_id'].iloc[-1] + minute)
             result = collection.insert_many(df.to_dict('records'))
             result.inserted_ids
-            #st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
+            st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
         else:
-            #st.write("Bloque de datos vacios para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
+            st.write("Bloque vacio para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
             from_timestamp += hour * 1000
             
-    #st.success("Datos actualizados para "+ symbol+" en "+timeframe)
+    st.success("Datos actualizados para "+ symbol+" en "+timeframe)
