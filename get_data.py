@@ -48,7 +48,7 @@ def save_candles(symbol, timeframe):
             limit = limit,
             since = from_timestamp,
             )
-            header = ['_id', 'open', 'high', 'low', 'close', 'volume']
+            header = ['timeframe', 'open', 'high', 'low', 'close', 'volume']
             df = pd.DataFrame(candles, columns = header)
             st.write(df)
             #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
