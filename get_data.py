@@ -31,7 +31,7 @@ def save_candles(symbol, timeframe):
     collection = db[select_col]
     from_timestamp = exchange.parse8601(fromtime)
     try:
-        last_data = pd.DataFrame(list(collection.find(sort=[("timestamp", pymongo.DESCENDING)]).limit(1)))
+        last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['_id'].iloc[0])
         collection.delete_many({"_id":from_timestamp}) 
         st.info("Actualizando "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["datetime"]))
@@ -48,12 +48,12 @@ def save_candles(symbol, timeframe):
             limit = limit,
             since = from_timestamp,
             )
-            header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+            header = ['_id', 'open', 'high', 'low', 'close', 'volume']
             df = pd.DataFrame(candles, columns = header)
-            df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
-            df.insert(1, '_id', df["timestamp"])
+            #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
+            #df.insert(1, '_id', df["timestamp"])
             #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
-            candles = df.sort_values(by='timestamp', ascending = False)
+            candles = df.sort_values(by='timestamp', ascending = True)
             
         except:    
             st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
