@@ -61,7 +61,7 @@ def save_candles(symbol, timeframe):
              
         
         if (len(candles)) > 0:
-            from_timestamp = int(candles['_id'].iloc[0] + minute)
+            from_timestamp = int(candles['_id'].iloc[-1] + minute)
             result = collection.insert_many(candles.to_dict('records'))
             result.inserted_ids
             #st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
