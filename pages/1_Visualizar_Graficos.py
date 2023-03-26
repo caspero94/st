@@ -118,7 +118,6 @@ to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
-st.write(data_activo)
 
 # Comprobamos si data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
@@ -126,7 +125,6 @@ if (len(data_activo)) > 0:
     #data_activo = data_activo.set_index('datetime')
     with st.container():
         fig = go.Figure()
-
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo[7]))
         fig.update_layout(
