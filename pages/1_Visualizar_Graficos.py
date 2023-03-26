@@ -12,6 +12,7 @@ layout = "wide"
 
 #setting title for our app
 st.set_page_config( layout=layout,page_title=page_title, page_icon=page_icon)
+
 #st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
@@ -30,41 +31,46 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
 
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 
-# Menu coins
+# Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
+timeframe_dict = {
+"1m": ("1 Minuto", 0),
+"3m": ("3 Minutos", 0),
+"5m": ("5 Minutos", 1),
+"15m": ("15 Minutos", 2),
+"30m": ("30 Minutos", 4),
+"1h": ("1 Hora", 8),
+"2h": ("2 Horas", 16),
+"4h": ("4 Horas", 32),
+"6h": ("6 Horas", 48),
+"8h": ("8 Horas", 64),
+"12h": ("12 Horas", 96),
+"1d": ("1 Dia", 192),
+"3d": ("3 Dias", 576),
+"1w": ("1 Semana", 1344),
+"1M": ("1 Mes", 5760),
+}
+
+timeframe_options = [timeframe_dict[key][0] for key in timeframe_dict]
+timeframe_values = [key for key in timeframe_dict]
+
+
+# Menu superior
 col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
+
+# Selecion moneda
 with col1:
     par = st.selectbox(
         "Coin",
         ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
+# Selecion temporalidad
 with col2:
-    timeframe_dict = {
-    "1m": ("1 Minuto", 0),
-    "3m": ("3 Minutos", 0),
-    "5m": ("5 Minutos", 1),
-    "15m": ("15 Minutos", 2),
-    "30m": ("30 Minutos", 4),
-    "1h": ("1 Hora", 8),
-    "2h": ("2 Horas", 16),
-    "4h": ("4 Horas", 32),
-    "6h": ("6 Horas", 48),
-    "8h": ("8 Horas", 64),
-    "12h": ("12 Horas", 96),
-    "1d": ("1 Dia", 192),
-    "3d": ("3 Dias", 576),
-    "1w": ("1 Semana", 1344),
-    "1M": ("1 Mes", 5760),
-    }
-    
-    timeframe_options = [timeframe_dict[key][0] for key in timeframe_dict]
-    timeframe_values = [key for key in timeframe_dict]
 
     timeframe = st.selectbox(
         "Coin",
@@ -73,7 +79,7 @@ with col2:
         label_visibility="collapsed"
     )
     timeframe_value = timeframe_dict[timeframe][1]
-
+# Selecion rango de fechas
 with col3:
     
     date1, date2 = st.columns(2)
@@ -86,6 +92,7 @@ with col3:
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
 
+# Actualizar datos
 with col5:
     with st.empty():
         if st.button('Actualizar datos', use_container_width=True):
@@ -106,17 +113,16 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Formateamos fechas para consulta en base datos
-from_datetime = int(datetime.datetime.combine(fromdate, datetime.datetime.min.time()).timestamp())
-to_datetime = int(datetime.datetime.combine(todate, datetime.datetime.max.time()).timestamp())
-st.write(from_datetime)
+from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
+to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
+
 # Realiza una consulta a la colección filtrada por fechas
-data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
+data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
 st.write(data_activo)
+
 # Comprobamos si data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
         
-    # Eliminamos columnas inecesarias
-    data_activo.drop(['_id','timestamp'], axis=1, inplace=True)
     #data_activo = data_activo.set_index('datetime')
     with st.container():
         fig = go.Figure()
