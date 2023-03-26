@@ -41,7 +41,7 @@ def save_candles(symbol, timeframe):
         st.info("Actualizando "+ symbol+" en "+timeframe+" desde el incio")
         pass    
     while(from_timestamp < now):
-        try:
+        #try:
             candles = exchange.fetch_ohlcv(
             symbol = symbol,
             timeframe = timeframe,
@@ -56,9 +56,9 @@ def save_candles(symbol, timeframe):
             #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
             candles = df.sort_values(by='timestamp', ascending = True)
             
-        except:    
+        #except:    
             #st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
-            pass
+        #    pass
              
         
         if (len(candles)) > 0:
