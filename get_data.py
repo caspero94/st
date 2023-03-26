@@ -50,7 +50,7 @@ def save_candles(symbol, timeframe):
             )
             header = ['_id', 'open', 'high', 'low', 'close', 'volume']
             df = pd.DataFrame(candles, columns = header)
-            print(df)
+            st.write(df)
             #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
             #df.insert(1, '_id', df["timestamp"])
             #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
