@@ -5,7 +5,7 @@ from datetime import datetime
 import pandas as pd
 import dbmongo
 import pymongo
-
+from pymongo import ASCENDING
 # Conecta a la base de datos
 db = dbmongo.get_mongo_db()
 
