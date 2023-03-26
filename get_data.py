@@ -42,19 +42,19 @@ def save_candles(symbol, timeframe):
         pass    
     while(from_timestamp < now):
         #try:
-            candles = exchange.fetch_ohlcv(
-            symbol = symbol,
-            timeframe = timeframe,
-            limit = limit,
-            since = from_timestamp,
-            )
-            header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-            df = pd.DataFrame(candles, columns = header)
-            st.write(df)
-            #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
-            #df.insert(1, '_id', df["timestamp"])
-            #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
-            candles = df.sort_values(by='timestamp', ascending = True)
+        candles = exchange.fetch_ohlcv(
+        symbol = symbol,
+        timeframe = timeframe,
+        limit = limit,
+        since = from_timestamp,
+        )
+        header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+        df = pd.DataFrame(candles, columns = header)
+        st.write(df)
+        #df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df.timestamp])
+        #df.insert(1, '_id', df["timestamp"])
+        #st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
+        candles = df.sort_values(by='timestamp', ascending = True)
             
         #except:    
             #st.error("Error actualizando datos de "+ symbol+" en "+timeframe)
