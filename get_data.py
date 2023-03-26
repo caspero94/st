@@ -32,13 +32,14 @@ def save_candles(symbol, timeframe):
     # Comprobamos si hay datos en db y eliminamos el ultimo registro
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
-        from_timestamp = int(last_data['_id'].iloc[0])
-        collection.delete_many({"_id":from_timestamp}) 
+        from_timestamp = int(last_data['timestamp'].iloc[0])
+        collection.delete_many({"timestamp":from_timestamp}) 
         st.info("Actualizando "+ symbol+" en "+timeframe+" desde "+ str(last_data.iloc[0]["_id"]))
         
     # Si no hay registros actualizamos desde el inicio
     except:
         st.info("Actualizando "+ symbol+" en "+timeframe+" desde el incio")
+        collection.create_index([("_id", ASCENDING)], name="datetime", unique=True)
         pass    
     
     # Iniciamos buble de recolección hasta la fecha actual     
@@ -47,9 +48,9 @@ def save_candles(symbol, timeframe):
         # Intentamos descargas datos
         try:
             candles = exchange.fetch_ohlcv(symbol = symbol,timeframe = timeframe,limit = limit,since = from_timestamp,)
-            header = ['_id', 'open', 'high', 'low', 'close', 'volume']
+            header = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
             df = pd.DataFrame(candles, columns = header)
-            df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df._id])
+            df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in timestamp._id])
             df = df.sort_values(by='_id', ascending = True)
             st.success("Descargado bloque de datos para "+ symbol+" en "+timeframe)
 
@@ -60,7 +61,7 @@ def save_candles(symbol, timeframe):
              
         # Comprobamos si el bloque descargado tiene datos y los insertamos en db
         if (len(candles)) > 0:
-            from_timestamp = int(df['_id'].iloc[-1] + minute)
+            from_timestamp = int(df['timestamp'].iloc[-1] + minute)
             result = collection.insert_many(df.to_dict('records'))
             result.inserted_ids
             st.success("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
