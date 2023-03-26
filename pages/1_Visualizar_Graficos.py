@@ -106,11 +106,11 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Formateamos fechas para consulta en base datos
-from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
-to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
+from_timestamp = int(fromdate.timestamp())
+to_timestamp = int(todate.timestamp())
 
 # Realiza una consulta a la colección filtrada por fechas
-data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
+data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
 
 # Comprobamos si data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
