@@ -51,7 +51,7 @@ def save_candles(symbol, timeframe):
             df = pd.DataFrame(candles, columns = header)
             df.insert(1, 'datetime', [datetime.fromtimestamp(d/1000) for d in df._id])
             df = df.sort_values(by='_id', ascending = True)
-            st.write("Descargado bloque de datos para "+ symbol+" en "+timeframe)
+            st.success("Descargado bloque de datos para "+ symbol+" en "+timeframe)
 
         # Sino hay datos, mostramos error    
         except:    
@@ -63,11 +63,11 @@ def save_candles(symbol, timeframe):
             from_timestamp = int(df['_id'].iloc[-1] + minute)
             result = collection.insert_many(df.to_dict('records'))
             result.inserted_ids
-            st.write("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
+            st.success("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
 
         # Si no hay datos mostramos mensaje de bloque vacio    
         else:
-            st.write("Bloque vacio para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
+            st.error("Bloque vacio para "+symbol+" en "+timeframe + "desde"+ str(from_timestamp))
             from_timestamp += hour * 1000
     
     # Terminamos el bucle y mostramos mensaje de completado        
