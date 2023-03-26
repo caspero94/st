@@ -111,7 +111,7 @@ to_datetime = int(datetime.datetime.combine(todate, datetime.datetime.max.time()
 
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-
+st.write(data_activo)
 # Comprobamos si data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
         
