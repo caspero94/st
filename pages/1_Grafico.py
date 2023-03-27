@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import datetime
 from functions import save_candles, get_mongo_db
-import time
+
 #setting config pagina streamlit
 page_title = "Gráfico"
 page_icon = ":chart:"
@@ -92,8 +92,6 @@ with col3:
 with col5:
     with st.empty():
         #if st.button('Actualizar datos', use_container_width=True):
-        tiempo_anterior = time.time()
-        if time.time() - tiempo_anterior >= 60:
             save_candles(
             symbol = par, 
             timeframe = timeframe,
