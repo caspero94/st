@@ -52,7 +52,7 @@ def save_candles(symbol, timeframe):
         st.info("Actualizando "+ symbol+"-"+timeframe+" - "+ str(last_data.iloc[0]["_id"]))
         
     except:
-        st.info("Actualizando "+ symbol+"-"+timeframe+" desde el incio")
+        st.info("Actualizando "+ symbol+"-"+timeframe)
         pass    
 
     # Iniciamos buble recolección de datos hasta llegar a la fecha de hoy
