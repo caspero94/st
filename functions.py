@@ -1,5 +1,5 @@
 # Resources Global
-from pymongo import MongoClient
+import pymongo
 
 # Función para obtener base datos mongo
 def get_mongo_db():
@@ -8,7 +8,7 @@ def get_mongo_db():
     username = "casper"
     password = "caspero"
     cluster = "ClusterCrypto"
-    client = MongoClient(f"mongodb+srv://{username}:{password}@{cluster}.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
+    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@{cluster}.6ydpkxh.mongodb.net/?retryWrites=true&w=majority")
 
     # Selecciona la base de datos que deseas utilizar
     db = client["CryptoData"]
