@@ -31,9 +31,6 @@ st.markdown("""
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
 
-# Conecta a la base de datos
-db = get_mongo_db()
-
 # Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
 timeframe_dict = {
 "1m": ("1 Minuto", 0),
@@ -84,30 +81,31 @@ with col3:
         fromdate = st.date_input(
             "From:",
             datetime.date.today() - datetime.timedelta(days=timeframe_value),label_visibility="collapsed")
+        from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
     with date2:
         todate = st.date_input(
             "To date:",
             datetime.date.today(),label_visibility="collapsed")
+        to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
 # Actualizar datos
 with col5:
-    with st.empty():
-        if st.button('Actualizar datos', use_container_width=True):
-                save_candles(
-                symbol = par, 
-                timeframe = timeframe,
-                )
+    #with st.empty():
+    if st.button('Actualizar datos', use_container_width=True):
+            save_candles(
+            symbol = par, 
+            timeframe = timeframe,
+            )
         
 with col4:
     st.empty()
 
+# Conecta a la base de datos
+db = get_mongo_db()
+
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
 collection = db[select_col]
-
-# Formateamos fechas para consulta en base datos
-from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
-to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
