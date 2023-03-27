@@ -30,6 +30,9 @@ st.markdown("""
 
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
+par = st.sidebar.selectbox(
+        "Coin",
+        ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
 # Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
 timeframe_dict = {
