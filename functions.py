@@ -88,4 +88,4 @@ def save_candles(symbol, timeframe):
             from_timestamp += hour * 1000
 
     # Proceso finalizado        
-    st.success("Datos actualizados para "+ symbol+"-"+timeframe)
+    st.success("Actualizacion completada de "+ symbol+"-"+timeframe)
