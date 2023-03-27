@@ -6,7 +6,7 @@ import datetime
 from functions import save_candles, get_mongo_db
 
 #setting config pagina streamlit
-page_title = "Graficos"
+page_title = "Gráfico"
 page_icon = ":chart:"
 layout = "wide"
 st.set_page_config( layout=layout,page_title=page_title, page_icon=page_icon)
