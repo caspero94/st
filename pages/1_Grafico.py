@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import datetime
 from functions import save_candles, get_mongo_db
-
+import time
 #setting config pagina streamlit
 page_title = "Gráfico"
 page_icon = ":chart:"
