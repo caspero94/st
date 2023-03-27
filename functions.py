@@ -68,7 +68,7 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='_id', ascending = True)
 
             # Mensaje completado try
-            st.info("Descargado datos de "+ symbol+"-"+timeframe)
+            #st.info("Descargado datos de "+ symbol+"-"+timeframe)
             
         # Mostramos error en caso de no haber podido completar la descarga OHLCV    
         except:    
@@ -81,7 +81,7 @@ def save_candles(symbol, timeframe):
             from_timestamp = int(df['timestamp'].iloc[-1] + minute)
             result = collection.insert_many(df.to_dict('records'))
             result.inserted_ids
-            st.success("Insertado datos de "+ symbol+"-"+timeframe)
+            #st.info("Insertado datos de "+ symbol+"-"+timeframe)
         else:
             # Actualizamos variable de from_timestamp para la siguiente busqueda ya que no hay datos
             #st.info("Bloque de datos vacios para "+symbol+"-"+timeframe + " - "+ str(from_timestamp))
