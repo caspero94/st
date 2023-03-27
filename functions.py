@@ -84,7 +84,7 @@ def save_candles(symbol, timeframe):
             st.success("Insertado datos de "+ symbol+"-"+timeframe)
         else:
             # Actualizamos variable de from_timestamp para la siguiente busqueda ya que no hay datos
-            st.info("Bloque de datos vacios para "+symbol+"-"+timeframe + " - "+ str(df.iloc[0]["_id"]))
+            st.info("Bloque de datos vacios para "+symbol+"-"+timeframe + " - "+ df.iloc[0]["_id"])
             from_timestamp += hour * 1000
 
     # Proceso finalizado        
