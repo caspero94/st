@@ -56,15 +56,17 @@ timeframe_values = [key for key in timeframe_dict]
 with st.sidebar:
 
     par = st.selectbox("Coin", ("BTC/BUSD","ETH/BUSD","BNB/BUSD"), label_visibility="collapsed")
-    
+
     timeframe = st.selectbox("Coin", timeframe_values, format_func=lambda x: timeframe_dict[x][0], label_visibility="collapsed")
     timeframe_value = timeframe_dict[timeframe][1]
 
-    fromdate = st.date_input("From:", datetime.date.today() - datetime.timedelta(days=timeframe_value),label_visibility="collapsed")
-    from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
-
-    todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
-    to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
+    date1, date2 = st.columns(2)
+    with date1:
+        fromdate = st.date_input("From:", datetime.date.today() - datetime.timedelta(days=timeframe_value),label_visibility="collapsed")
+        from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
+    with date2:
+        todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
+        to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
     with st.empty():
             if st.button('Actualizar datos', use_container_width=True):
