@@ -47,7 +47,9 @@ def save_candles(symbol, timeframe):
     # Comprobamos si hay datos previos, si hay, eliminamos el ultimo registro para actualizarlo y sino hay empezamos desde el inicio
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
+        st.write(last_data)
         last_data = int(last_data['_id'].iloc[0])
+        st.write(last_data)
         collection.delete_many({"_id":last_data}) 
         st.info("Actualizando "+ symbol+"-"+timeframe+" desde "+ str(last_data.iloc[0]["_id"]))
         
@@ -68,7 +70,7 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='_id', ascending = True)
 
             # Mensaje completado try
-            st.info("Descargado bloque de datos para "+ symbol+"-"+timeframe)
+            st.info("Descargado datos para "+ symbol+"-"+timeframe)
             
         # Mostramos error en caso de no haber podido completar la descarga OHLCV    
         except:    
