@@ -106,7 +106,7 @@ if (len(data_activo)) > 0:
             fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             #fig.add_trace(go.Histogram(x=data_activo[7]))
             st.plotly_chart(fig,use_container_width=True,config=configs)
-            time.sleep(8)
+            time.sleep(60)
             save_candles(symbol = par, timeframe = timeframe)
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
