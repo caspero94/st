@@ -89,31 +89,30 @@ if (len(data_activo)) > 0:
     #data_activo = data_activo.set_index('datetime')
     with st.container():
         fig = go.Figure()
-        fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-        #fig.add_trace(go.Histogram(x=data_activo[7]))
-        fig.update_layout(
-            #xaxis_title='Tiempo',
-            #xaxis={'side': 'top'},
-            #yaxis_title='Precio',
-            yaxis={'side': 'right'},
-            height = 800,
-            margin=dict(l=0, r=0, t=0, b=0,pad=0),
-            xaxis_rangeslider_visible=False)
+        fig.update_layout(#xaxis_title='Tiempo',
+                #xaxis_title='Tiempo',
+                #xaxis={'side': 'top'},
+                #yaxis_title='Precio',
+                yaxis={'side': 'right'},
+                height = 800,
+                margin=dict(l=0, r=0, t=0, b=0,pad=0),
+                xaxis_rangeslider_visible=False)
         #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
         #fig.update_xaxes(automargin='left+right')
         #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
         configs = dict({'scrollZoom': False,'displaylogo': False} )
-        st.plotly_chart(fig,use_container_width=True,config=configs)
+
         while True:
-            time.sleep(8)
             save_candles(symbol = par, timeframe = timeframe)
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
             data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
-            st.write(data_activo_update)
             data_activo = data_activo.append(data_activo_update)
-            fig.data(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"])
+            fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            #fig.add_trace(go.Histogram(x=data_activo[7]))
             st.plotly_chart(fig,use_container_width=True,config=configs)
+            time.sleep(8)
+
         
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
