@@ -90,12 +90,12 @@ with col3:
 
 # Actualizar datos
 with col5:
-    #with st.empty():
-    if st.button('Actualizar datos', use_container_width=True):
-            save_candles(
-            symbol = par, 
-            timeframe = timeframe,
-            )
+    with st.empty():
+        if st.button('Actualizar datos', use_container_width=True):
+                save_candles(
+                symbol = par, 
+                timeframe = timeframe,
+                )
         
 with col4:
     st.empty()
