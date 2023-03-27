@@ -47,7 +47,7 @@ def save_candles(symbol, timeframe):
     # Comprobamos si hay datos previos, si hay, eliminamos el ultimo registro para actualizarlo y sino hay empezamos desde el inicio
     try:
         last_data = pd.DataFrame(collection.find_one(sort=[("_id", pymongo.DESCENDING)]))
-        st.write(last_data)
+        last_data
         from_timestamp = int(last_data['timestamp'].iloc[0])
         st.write(from_timestamp)
         collection.delete_many({"timestamp":from_timestamp}) 
