@@ -1,18 +1,15 @@
 # Resources
-import dbmongo
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import datetime
+from functions import save_candles, get_mongo_db
 
-#variables
+#setting config pagina streamlit
 page_title = "Graficos"
 page_icon = ":chart:"
 layout = "wide"
-
-#setting title for our app
 st.set_page_config( layout=layout,page_title=page_title, page_icon=page_icon)
-
 #st.title(page_icon + " " + page_title)
 st.markdown("""
         <style>
@@ -79,9 +76,9 @@ with col2:
         label_visibility="collapsed"
     )
     timeframe_value = timeframe_dict[timeframe][1]
+
 # Selecion rango de fechas
 with col3:
-    
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input(
@@ -96,7 +93,6 @@ with col3:
 with col5:
     with st.empty():
         if st.button('Actualizar datos', use_container_width=True):
-                from get_data import save_candles
                 save_candles(
                 symbol = par, 
                 timeframe = timeframe,
@@ -104,9 +100,6 @@ with col5:
         
 with col4:
     st.empty()
-
-
-
 
 # Selecciona la colección que deseas utilizar
 select_col = (par+"_"+timeframe)
@@ -117,15 +110,15 @@ from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time()
 to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
 # Realiza una consulta a la colección filtrada por fechas
-data_activo = pd.DataFrame(list(collection.find({'datetime': {'$gte': from_datetime, '$lte': to_datetime}})))
+data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
 
-# Comprobamos si data_activo contiene datos para plot y sino enviamos mensaje error
+# Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
         
     #data_activo = data_activo.set_index('datetime')
     with st.container():
         fig = go.Figure()
-        fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+        fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo[7]))
         fig.update_layout(
             #xaxis_title='Tiempo',
