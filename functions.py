@@ -47,9 +47,7 @@ def save_candles(symbol, timeframe):
     # Comprobamos si hay datos previos, si hay, eliminamos el ultimo registro para actualizarlo y sino hay empezamos desde el inicio
     try:
         last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
-        st.write(last_data)
         from_timestamp = int(last_data['timestamp'].iloc[0])
-        st.write(from_timestamp)
         collection.delete_many({"timestamp":from_timestamp}) 
         st.info("Actualizando "+ symbol+"-"+timeframe+" - "+ str(last_data.iloc[0]["_id"]))
         
@@ -70,7 +68,7 @@ def save_candles(symbol, timeframe):
             candles = df.sort_values(by='_id', ascending = True)
 
             # Mensaje completado try
-            st.info("Descargado datos para "+ symbol+"-"+timeframe)
+            st.info("Descargado datos de "+ symbol+"-"+timeframe)
             
         # Mostramos error en caso de no haber podido completar la descarga OHLCV    
         except:    
@@ -83,10 +81,10 @@ def save_candles(symbol, timeframe):
             from_timestamp = int(df['timestamp'].iloc[-1] + minute)
             result = collection.insert_many(df.to_dict('records'))
             result.inserted_ids
-            st.info("Insertado bloque de datos en base de datos de "+ symbol+" en "+timeframe)
+            st.success("Insertado datos de "+ symbol+"-"+timeframe)
         else:
             # Actualizamos variable de from_timestamp para la siguiente busqueda ya que no hay datos
-            st.error("Bloque de datos vacios para "+symbol+"-"+timeframe + " - "+ str(from_timestamp))
+            st.info("Bloque de datos vacios para "+symbol+"-"+timeframe + " - "+ str(df.iloc[0]["_id"]))
             from_timestamp += hour * 1000
 
     # Proceso finalizado        
