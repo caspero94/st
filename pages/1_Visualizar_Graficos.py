@@ -32,7 +32,7 @@ st.markdown("""
 #st.sidebar.markdown("# Graficos")
 
 # Conecta a la base de datos
-db = dbmongo.get_mongo_db()
+db = get_mongo_db()
 
 # Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
 timeframe_dict = {
