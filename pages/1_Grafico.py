@@ -30,9 +30,45 @@ st.markdown("""
 
 #st.markdown("# Graficos")
 #st.sidebar.markdown("# Graficos")
+
+# Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
+timeframe_dict = {
+"1m": ("1 Minuto", 0),
+"3m": ("3 Minutos", 0),
+"5m": ("5 Minutos", 0),
+"15m": ("15 Minutos", 1),
+"30m": ("30 Minutos", 2),
+"1h": ("1 Hora", 4),
+"2h": ("2 Horas", 8),
+"4h": ("4 Horas", 16),
+"6h": ("6 Horas", 24),
+"8h": ("8 Horas", 32),
+"12h": ("12 Horas", 48),
+"1d": ("1 Dia", 96),
+"3d": ("3 Dias", 288),
+"1w": ("1 Semana", 672),
+"1M": ("1 Mes", 2880),
+}
+
+timeframe_options = [timeframe_dict[key][0] for key in timeframe_dict]
+timeframe_values = [key for key in timeframe_dict]
+
 par = st.sidebar.selectbox(
         "Coin",
         ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
+timeframe = st.sidebar.selectbox(
+        "Coin",
+        timeframe_values,
+        format_func=lambda x: timeframe_dict[x][0],
+        label_visibility="collapsed"
+    )
+timeframe_value = timeframe_dict[timeframe][1]
+
+fromdate = st.sidebar.date_input("From:", datetime.date.today() - datetime.timedelta(days=timeframe_value),label_visibility="collapsed")
+from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
+
+todate = st.sidebar.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
+to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
 
 # Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
 timeframe_dict = {
@@ -62,34 +98,19 @@ col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
 
 # Selecion moneda
 with col1:
-    paro = st.selectbox(
-        "Coin",
-        ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
+    st.empty()
 
 # Selecion temporalidad
 with col2:
 
-    timeframe = st.selectbox(
-        "Coin",
-        timeframe_values,
-        format_func=lambda x: timeframe_dict[x][0],
-        label_visibility="collapsed"
-    )
-    timeframe_value = timeframe_dict[timeframe][1]
-
+    st.empty()
 # Selecion rango de fechas
 with col3:
     date1, date2 = st.columns(2)
     with date1:
-        fromdate = st.date_input(
-            "From:",
-            datetime.date.today() - datetime.timedelta(days=timeframe_value),label_visibility="collapsed")
-        from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.min.time())
+        st.empty
     with date2:
-        todate = st.date_input(
-            "To date:",
-            datetime.date.today(),label_visibility="collapsed")
-        to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
+        st.empty
 
 # Actualizar datos
 with col5:
