@@ -62,7 +62,7 @@ col1, col2, col3, col4, col5 = st.columns([1,1,2,2,2])
 
 # Selecion moneda
 with col1:
-    par = st.selectbox(
+    paro = st.selectbox(
         "Coin",
         ("BTC/BUSD","ETH/BUSD","BNB/BUSD"),label_visibility="collapsed")
 
