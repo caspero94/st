@@ -103,15 +103,15 @@ if (len(data_activo)) > 0:
         configs = dict({'scrollZoom': False,'displaylogo': False} )
 
         while True:
+            fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            #fig.add_trace(go.Histogram(x=data_activo[7]))
+            st.plotly_chart(fig,use_container_width=True,config=configs)
+            time.sleep(8)
             save_candles(symbol = par, timeframe = timeframe)
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
             data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
             data_activo = data_activo.append(data_activo_update)
-            fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-            #fig.add_trace(go.Histogram(x=data_activo[7]))
-            st.plotly_chart(fig,use_container_width=True,config=configs)
-            time.sleep(8)
 
         
 else:
