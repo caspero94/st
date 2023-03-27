@@ -50,7 +50,7 @@ def save_candles(symbol, timeframe):
         last_data = pd.DataFrame(list(collection.find_one(sort=[("_id", pymongo.DESCENDING)])))
         st.write("Imprimimos ultimo registro")
         st.write(last_data)
-        from_timestamp = int(last_data['timestamp'].iloc[0])
+        from_timestamp = int(last_data['timestamp'])
         st.write("Imprimimos timestamp")
         st.write(from_timestamp)
         collection.delete_one({"timestamp":from_timestamp}) 
