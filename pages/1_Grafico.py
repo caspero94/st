@@ -91,14 +91,11 @@ with col3:
 # Actualizar datos
 with col5:
     with st.empty():
-        #if st.button('Actualizar datos', use_container_width=True):
-        check = True
-        if check == True:
+        if st.button('Actualizar datos', use_container_width=True):
             save_candles(
             symbol = par, 
             timeframe = timeframe,
             )
-            check = False
         
 with col4:
     st.empty()
