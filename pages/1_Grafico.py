@@ -70,10 +70,7 @@ with st.sidebar:
 
     with st.empty():
             if st.button('Actualizar datos', use_container_width=True):
-                save_candles(
-                symbol = par, 
-                timeframe = timeframe,
-                )
+                save_candles(symbol = par, timeframe = timeframe)
 
 # Conecta a la base de datos
 db = get_mongo_db()
@@ -106,5 +103,16 @@ if (len(data_activo)) > 0:
         #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
         configs = dict({'scrollZoom': False,'displaylogo': False} )
         st.plotly_chart(fig,use_container_width=True,config=configs)
+        while True:
+            time.sleep(8)
+            save_candles(symbol = par, timeframe = timeframe)
+            update_time= datetime.now() - datetime.timedelta(minutes=2)
+            update_now = datetime.now()
+            data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
+            st.write(data_activo_update)
+            data_activo = data_activo.append(data_activo_update)
+            fig.data(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"])
+            st.plotly_chart(fig,use_container_width=True,config=configs)
+        
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
