@@ -111,13 +111,13 @@ if (len(data_activo)) > 0:
 
         while True:
             time.sleep(15)
-            #save_candles(symbol = par, timeframe = timeframe)
+            save_candles(symbol = par, timeframe = timeframe)
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
             data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
             data_activo = pd.concat([data_activo, data_activo_update])
             data_activo = data_activo.drop_duplicates(subset=['_id'])
             fig.update_traces(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-                                    
+                    
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
