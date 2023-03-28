@@ -34,7 +34,7 @@ st.markdown("""
 
 # Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
 timeframe_dict = {
-"1m": ("1 Minuto", 23),
+"1m": ("1 Minuto", 6),
 "3m": ("3 Minutos", 4),
 "5m": ("5 Minutos", 8),
 "15m": ("15 Minutos", 24),
@@ -64,7 +64,6 @@ with st.sidebar:
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input("From:", datetime.datetime.now() - datetime.timedelta(hours=timeframe_value),label_visibility="collapsed")
-
         from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.now().time())
         st.write(from_datetime)
     with date2:
