@@ -109,7 +109,7 @@ if (len(data_activo)) > 0:
 
         while True:
             time.sleep(15)
-            save_candles(symbol = par, timeframe = timeframe)
+            #save_candles(symbol = par, timeframe = timeframe)
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
             data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
