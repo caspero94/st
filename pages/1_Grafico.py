@@ -88,6 +88,7 @@ if (len(data_activo)) > 0:
         
     #data_activo = data_activo.set_index('datetime')
     with st.container():
+        
         fig = go.Figure()
         fig.add_trace(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo[7]))
@@ -108,17 +109,14 @@ if (len(data_activo)) > 0:
 
         while True:
             time.sleep(15)
-            with st.empty():
-                save_candles(symbol = par, timeframe = timeframe)
-
+            save_candles(symbol = par, timeframe = timeframe)
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
             data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
             data_activo = data_activo.append(data_activo_update)
             data_activo = data_activo.drop_duplicates(subset=['_id'])
-
             fig.update_traces(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-            st.plotly_chart(fig,use_container_width=True,config=configs)
+            
 
 
 
