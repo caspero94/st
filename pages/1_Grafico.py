@@ -81,7 +81,7 @@ select_col = (par+"_"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección filtrada por fechas
-data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
+data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': fromdate, '$lte': to_datetime}})))
 
 # Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
