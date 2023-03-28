@@ -43,22 +43,23 @@ def save_candles(symbol, timeframe):
     fromtime = ('2015-01-01 00:00:00')
     candles = []
     from_timestamp = exchange.parse8601(fromtime)
-
-       
-
+    
+    try:
+        last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
+        from_timestamp = int(last_data['timestamp'].iloc[0])
+        collection.delete_many({"timestamp":{'$gte':from_timestamp}}) 
+        #st.info("Actualizando "+ symbol+"-"+timeframe+" - "+ str(last_data.iloc[0]["_id"]))
+        
+    except:
+        #st.info("Actualizando "+ symbol+"-"+timeframe)
+        pass
+    
+    
     # Iniciamos buble recolección de datos hasta llegar a la fecha de hoy
     while(from_timestamp < now):
         
         # Comprobamos si hay datos previos, si hay, eliminamos el ultimo registro para actualizarlo y sino hay empezamos desde el inicio
-        try:
-            last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
-            from_timestamp = int(last_data['timestamp'].iloc[0])
-            collection.delete_many({"timestamp":from_timestamp}) 
-            #st.info("Actualizando "+ symbol+"-"+timeframe+" - "+ str(last_data.iloc[0]["_id"]))
-            
-        except:
-            #st.info("Actualizando "+ symbol+"-"+timeframe)
-            pass
+
         try:
             # Descargamos del exchange los OHLCV
             candles = exchange.fetch_ohlcv(symbol = symbol,timeframe = timeframe,limit = limit,since = from_timestamp,)
