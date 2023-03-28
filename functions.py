@@ -23,7 +23,7 @@ def save_candles(symbol, timeframe):
     # Resources
     import ccxt
     import pandas as pd
-    import streamlit as st
+    #import streamlit as st
     from datetime import datetime
 
     # Conecta a la base de datos y set collection
@@ -49,10 +49,10 @@ def save_candles(symbol, timeframe):
         last_data = pd.DataFrame(list(collection.find(sort=[("_id", pymongo.DESCENDING)]).limit(1)))
         from_timestamp = int(last_data['timestamp'].iloc[0])
         collection.delete_many({"timestamp":from_timestamp}) 
-        st.info("Actualizando "+ symbol+"-"+timeframe+" - "+ str(last_data.iloc[0]["_id"]))
+        #st.info("Actualizando "+ symbol+"-"+timeframe+" - "+ str(last_data.iloc[0]["_id"]))
         
     except:
-        st.info("Actualizando "+ symbol+"-"+timeframe)
+        #st.info("Actualizando "+ symbol+"-"+timeframe)
         pass    
 
     # Iniciamos buble recolección de datos hasta llegar a la fecha de hoy
@@ -72,7 +72,7 @@ def save_candles(symbol, timeframe):
             
         # Mostramos error en caso de no haber podido completar la descarga OHLCV    
         except:    
-            st.error("Error actualizando datos de "+ symbol+"-"+timeframe)
+            #st.error("Error actualizando datos de "+ symbol+"-"+timeframe)
             pass
              
         # Comprobamos que candles contiene información
@@ -88,4 +88,4 @@ def save_candles(symbol, timeframe):
             from_timestamp += hour * 1000
 
     # Proceso finalizado        
-    st.success("Actualizacion completada de "+ symbol+"-"+timeframe)
+    #st.success("Actualizacion completada de "+ symbol+"-"+timeframe)

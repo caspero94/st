@@ -117,7 +117,8 @@ if (len(data_activo)) > 0:
             data_activo = data_activo.append(data_activo_update)
             data_activo = data_activo.drop_duplicates(subset=['_id'])
 
-            fig.update(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            fig.update_traces(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            st.plotly_chart(fig,use_container_width=True,config=configs)
 
 
 
