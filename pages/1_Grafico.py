@@ -65,11 +65,11 @@ with st.sidebar:
     with date1:
         fromdate = st.date_input("From:", datetime.date.today() - datetime.timedelta(hours=timeframe_value),label_visibility="collapsed")
         from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.now().time())
-        st.trite(from_datetime)
+        st.write(from_datetime)
     with date2:
         todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
         to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
-        st.trite(to_datetime)
+        st.write(to_datetime)
     with st.empty():
             if st.button('Actualizar datos', use_container_width=True):
                 save_candles(symbol = par, timeframe = timeframe)
