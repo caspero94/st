@@ -64,7 +64,7 @@ with st.sidebar:
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input("From:", datetime.date.today() - datetime.timedelta(hours=timeframe_value),label_visibility="collapsed")
-        from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.time())
+        from_datetime = datetime.datetime.combine(fromdate, datetime.datetime.now().time())
     with date2:
         todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
         to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
