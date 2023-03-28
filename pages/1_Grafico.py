@@ -34,7 +34,7 @@ st.markdown("""
 
 # Creamos diccionario de temporalidad y dias que se van a mostrar para esa temp.
 timeframe_dict = {
-"1m": ("1 Minuto", 18),
+"1m": ("1 Minuto", 48),
 "3m": ("3 Minutos", 4),
 "5m": ("5 Minutos", 8),
 "15m": ("15 Minutos", 24),
