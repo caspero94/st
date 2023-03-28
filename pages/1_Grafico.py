@@ -115,7 +115,7 @@ if (len(data_activo)) > 0:
             update_time= datetime.datetime.now() - datetime.timedelta(minutes=2)
             update_now = datetime.datetime.now()
             data_activo_update = pd.DataFrame(list(collection.find({'_id': {'$gte': update_time, '$lte': update_now}})))
-            data_activo = data_activo.append(data_activo_update)
+            data_activo = pd.concat([data_activo, data_activo_update])
             data_activo = data_activo.drop_duplicates(subset=['_id'])
             fig.update_traces(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
                                     
