@@ -120,7 +120,7 @@ if (len(data_activo)) > 0:
         
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-            data_activo['datetime'] = pd.to_datetime(nuevos_datos['_id'], unit='ms')
+            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
             fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             with st.empty:
                 chart = st.plotly_chart(fig,use_container_width=True,config=configs)
