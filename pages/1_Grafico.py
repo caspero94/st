@@ -117,17 +117,19 @@ if (len(data_activo)) > 0:
             margin=dict(l=0, r=0, t=0, b=0,pad=0),
             xaxis_rangeslider_visible=False)     
         configs = dict({'scrollZoom': False,'displaylogo': False} )
+        fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-            
-            
-            
+            fig.data[0].x = data_activo["datetime"]
+            fig.data[0].open = data_activo["open"]
+            fig.data[0].high = data_activo["high"]
+            fig.data[0].low = data_activo["low"]
+            fig.data[0].close = data_activo["close"]           
             with st.empty():
-                fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
                 chart = st.plotly_chart(fig,use_container_width=True,config=configs)
-                time.sleep(10)
-            
+                time.sleep(10)      
                 
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
