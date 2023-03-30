@@ -83,7 +83,7 @@ collection = db[select_col]
 
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-data_activo["datetime"] = datetime.datetime.fromtimestamp(from_ts / 1000)
+data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
 
 # Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
@@ -112,7 +112,7 @@ if (len(data_activo)) > 0:
         while True:
             time.sleep(15)
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-            data_activo["datetime"] = datetime.datetime.fromtimestamp(from_ts / 1000)
+            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             st.write(data_activo[["close", "datetime"]].iloc[0])        
 else:
