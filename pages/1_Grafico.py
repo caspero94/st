@@ -91,23 +91,23 @@ if (len(data_activo)) > 0:
     #data_activo = data_activo.set_index('datetime')
 
     with st.container():
-        with st.empty():
-            while True:
-                fig = go.FigureWidget()
-                fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-                #fig.add_trace(go.Histogram(x=data_activo[7]))
-                fig.update_layout(#xaxis_title='Tiempo',
-                        #xaxis_title='Tiempo',
-                        #xaxis={'side': 'top'},
-                        #yaxis_title='Precio',
-                        yaxis={'side': 'right'},
-                        height = 800,
-                        margin=dict(l=0, r=0, t=0, b=0,pad=0),
-                        xaxis_rangeslider_visible=False)
-                #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
-                #fig.update_xaxes(automargin='left+right')
-                #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
-                configs = dict({'scrollZoom': False,'displaylogo': False} )
+        while True:
+            fig = go.FigureWidget()
+            fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            #fig.add_trace(go.Histogram(x=data_activo[7]))
+            fig.update_layout(#xaxis_title='Tiempo',
+                    #xaxis_title='Tiempo',
+                    #xaxis={'side': 'top'},
+                    #yaxis_title='Precio',
+                    yaxis={'side': 'right'},
+                    height = 800,
+                    margin=dict(l=0, r=0, t=0, b=0,pad=0),
+                    xaxis_rangeslider_visible=False)
+            #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
+            #fig.update_xaxes(automargin='left+right')
+            #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
+            configs = dict({'scrollZoom': False,'displaylogo': False} )
+            with st.empty():
                 st.plotly_chart(fig,use_container_width=True,config=configs)
                 time.sleep(7)
 
@@ -115,3 +115,16 @@ if (len(data_activo)) > 0:
                 
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
+    
+    nuevos_datos = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
+    nuevos_datos['datetime'] = pd.to_datetime(nuevos_datos['_id'], unit='ms')
+
+    fig.data[0].x = nuevos_datos["datetime"]
+    fig.data[0].open = nuevos_datos["open"]
+    fig.data[0].high = nuevos_datos["high"]
+    fig.data[0].low = nuevos_datos["low"]
+    fig.data[0].close = nuevos_datos["close"]
+
+
+    fig.update_traces()
+    st.plotly_chart(fig,use_container_width=True,config=configs)
