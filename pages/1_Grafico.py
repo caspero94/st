@@ -64,10 +64,10 @@ with st.sidebar:
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input("From:", datetime.datetime.now() - datetime.timedelta(hours=timeframe_value),label_visibility="collapsed")
-        from_datetime = datetime.datetime.now() - datetime.timedelta(hours=timeframe_value)
+        from_datetime = int((datetime.datetime.now() - datetime.timedelta(hours=timeframe_value)).timestamp() * 1000)
     with date2:
         todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
-        to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
+        to_timestamp = int(to_datetime.timestamp() * 1000)
     with st.empty():
             if st.button('Actualizar datos', use_container_width=True):
                 st.write('refresh')
