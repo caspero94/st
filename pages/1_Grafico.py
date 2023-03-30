@@ -122,7 +122,8 @@ if (len(data_activo)) > 0:
         while True:
             nuevos_datos = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             nuevos_datos['datetime'] = pd.to_datetime(nuevos_datos['_id'], unit='ms')
-            chart.add_rows(some_fancy_name=nuevos_datos)
+            with st.empty:
+                chart
             time.sleep(10)
             
                 
