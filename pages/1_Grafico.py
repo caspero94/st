@@ -111,8 +111,16 @@ if (len(data_activo)) > 0:
 
         while True:
             time.sleep(15)
-            data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-            fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))    
+            nuevos_datos = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
+            nuevos_datos['datetime'] = pd.to_datetime(nuevos_datos['_id'], unit='ms')
+
+            fig.data[0].x = nuevos_datos["datetime"]
+            fig.data[0].open = nuevos_datos["open"]
+            fig.data[0].high = nuevos_datos["high"]
+            fig.data[0].low = nuevos_datos["low"]
+            fig.data[0].close = nuevos_datos["close"]
+
+
+            fig.update_traces()    
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
