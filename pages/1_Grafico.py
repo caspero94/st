@@ -122,6 +122,6 @@ if (len(data_activo)) > 0:
 
 
             fig.update_traces()
-            fig
+            st.plotly_chart(fig,use_container_width=True,config=configs)
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
