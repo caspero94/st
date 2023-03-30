@@ -64,22 +64,20 @@ with st.sidebar:
     date1, date2 = st.columns(2)
     with date1:
         fromdate = st.date_input("From:", datetime.datetime.now() - datetime.timedelta(hours=timeframe_value),label_visibility="collapsed")
-        st.write(fromdate)
         from_datetime = datetime.datetime.now() - datetime.timedelta(hours=timeframe_value)
-        st.write(from_datetime)
     with date2:
         todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
         to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
-        st.write(to_datetime)
     with st.empty():
             if st.button('Actualizar datos', use_container_width=True):
-                save_candles(symbol = par, timeframe = timeframe)
+                st.write('refresh')
+                #save_candles(symbol = par, timeframe = timeframe)
 
 # Conecta a la base de datos
 db = get_mongo_db()
 
 # Selecciona la colección que deseas utilizar
-select_col = (par+"_"+timeframe)
+select_col = (par+"-"+timeframe)
 collection = db[select_col]
 
 # Realiza una consulta a la colección filtrada por fechas
@@ -111,7 +109,6 @@ if (len(data_activo)) > 0:
 
         while True:
             time.sleep(15)
-            save_candles(symbol = par, timeframe = timeframe)
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             fig.update_traces(go.Candlestick(x=data_activo["_id"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
                     
