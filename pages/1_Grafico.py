@@ -91,7 +91,7 @@ if (len(data_activo)) > 0:
     #data_activo = data_activo.set_index('datetime')
     with st.container():
         
-        fig = go.Figure()
+        fig = go.FigureWidget()
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo[7]))
         fig.update_layout(#xaxis_title='Tiempo',
