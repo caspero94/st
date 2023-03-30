@@ -67,6 +67,7 @@ with st.sidebar:
         from_datetime = int((datetime.datetime.now() - datetime.timedelta(hours=timeframe_value)).timestamp() * 1000)
     with date2:
         todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
+        to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
         to_datetime = int(to_datetime.timestamp() * 1000)
     with st.empty():
             if st.button('Actualizar datos', use_container_width=True):
