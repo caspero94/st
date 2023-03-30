@@ -121,6 +121,7 @@ if (len(data_activo)) > 0:
             fig.data[0].close = nuevos_datos["close"]
 
 
-            fig.update_traces()    
+            fig.update_traces()
+            fig
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
