@@ -5,6 +5,16 @@ import streamlit as st
 import datetime
 from functions import get_mongo_db
 import time
+import requests
+
+# Hacemos una petición a worldtimeapi.org para obtener la hora actual
+response = requests.get('http://worldtimeapi.org/api/ip')
+time_data = response.json()
+
+# Extraemos la fecha y hora actual de los datos de la respuesta
+datetime_str = time_data['datetime']
+datetime_obj = datetime.fromisoformat(datetime_str)
+
 
 #setting config pagina streamlit
 page_title = "Gráfico"
@@ -80,8 +90,8 @@ collection = db[select_col]
 
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-
+#data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
+data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms') + (datetime_obj - datetime.now())
 
 # Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
@@ -104,7 +114,8 @@ if (len(data_activo)) > 0:
         # Actualizar grafico
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
+            #data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
+            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms') + (datetime_obj - datetime.now())
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)  
             time.sleep(6)      
