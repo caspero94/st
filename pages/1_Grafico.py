@@ -111,7 +111,7 @@ if (len(data_activo)) > 0:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
             figW.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-            #chart_placeholder.plotly_chart(figW,use_container_width=True,config=configs)  
+            chart_placeholder.plotly_chart(figW,use_container_width=True,config=configs)  
             time.sleep(6)      
                 
 else:
