@@ -13,7 +13,7 @@ time_data = response.json()
 
 # Extraemos la fecha y hora actual de los datos de la respuesta
 datetime_str = time_data['datetime']
-datetime_obj = datetime.fromisoformat(datetime_str)
+datetime_obj = datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%S.%f%z')
 
 
 #setting config pagina streamlit
