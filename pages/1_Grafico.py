@@ -94,7 +94,7 @@ if (len(data_activo)) > 0:
     # Mostrar grafico
     with st.container():
         chart_placeholder = st.empty()
-        fig = go.Figure()   
+        fig = go.FigureWidget()   
         fig.update_layout(
             yaxis={'side': 'right'},
             height = 800,
@@ -103,15 +103,14 @@ if (len(data_activo)) > 0:
         configs = dict({'scrollZoom': False,'displaylogo': False} )
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo["volume"]))
-        figW = go.FigureWidget(fig)
-        chart_placeholder.plotly_chart(figW,use_container_width=True,config=configs)
+        chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)
         
         # Actualizar grafico
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-            figW.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-            chart_placeholder.plotly_chart(figW,use_container_width=True,config=configs)  
+            fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)  
             time.sleep(6)      
                 
 else:
