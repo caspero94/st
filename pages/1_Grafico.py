@@ -104,7 +104,6 @@ if (len(data_activo)) > 0:
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo["volume"]))
         chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)
-        st.write(data_activo)
         
         # Actualizar grafico
         while True:
