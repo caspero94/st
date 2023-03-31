@@ -8,15 +8,12 @@ import time
 import requests
 from pytz import timezone
 
-# Obtener la dirección IP del cliente
-ip = requests.get('https://api.ipify.org').text
-
-# Obtener la información de ubicación y zona horaria utilizando la API ipapi
-response = requests.get(f'http://ipapi.co/{ip}/json/')
-location_data = response.json()
+# Obtener la zona horaria del cliente utilizando la API de World Time API
+response = requests.get('http://worldtimeapi.org/api/ip')
+timezone_data = response.json()
 
 # Obtener la zona horaria del cliente
-client_tz = timezone(location_data['timezone'])
+client_tz = timezone(timezone_data['timezone'])
 
 
 #setting config pagina streamlit
