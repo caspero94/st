@@ -126,7 +126,7 @@ if (len(data_activo)) > 0:
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)
                 
-            time.sleep(10)      
+            time.sleep(2)      
                 
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
