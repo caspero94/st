@@ -18,10 +18,10 @@ st.markdown("""
                 footer {visibility: hidden;}
                 header {visibility: hidden;}
                 .block-container {
-                    padding-top: 2rem;
+                    padding-top: 1rem;
                     padding-bottom: 0rem;
                     padding-left: 1rem;
-                    padding-right: 3rem;
+                    padding-right: 1rem;
                 }
                 button[title="View fullscreen"] {
                     visibility: hidden;
