@@ -6,7 +6,7 @@ import datetime
 from functions import get_mongo_db
 import time
 import requests
-from pytz import timezone
+from pytz import timezone, utc
 
 # Obtener la zona horaria del cliente utilizando la API de World Time API
 response = requests.get('http://worldtimeapi.org/api/ip')
@@ -14,6 +14,9 @@ timezone_data = response.json()
 
 # Obtener la zona horaria del cliente
 client_tz = timezone(timezone_data['timezone'])
+
+# Calcular la diferencia horaria entre la zona horaria del cliente y UTC
+client_offset = client_tz.utcoffset(datetime.utcnow())
 
 
 #setting config pagina streamlit
@@ -91,7 +94,7 @@ collection = db[select_col]
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
 #data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms').dt.tz_localize('UTC').dt.tz_convert(client_tz)
+data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms').dt.tz_localize(utc).dt.tz_convert(client_tz).dt.tz_localize(None) - client_offset
 
 # Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
@@ -114,7 +117,7 @@ if (len(data_activo)) > 0:
         # Actualizar grafico
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms').dt.tz_localize('UTC').dt.tz_convert(client_tz)
+            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms').dt.tz_localize(utc).dt.tz_convert(client_tz).dt.tz_localize(None) - client_offset
             #data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)  
