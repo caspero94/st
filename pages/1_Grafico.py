@@ -87,26 +87,11 @@ data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, 
 data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
 
 
-def update_data():
-    global data_activo
-    
-    data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-    data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-    
-    # Actualiza los datos en la figura de Plotly
-    fig.data[0].x = data_activo['datetime']
-    fig.data[0].open = data_activo['open']
-    fig.data[0].high = data_activo['high']
-    fig.data[0].low = data_activo['low']
-    fig.data[0].close = data_activo['close']
-
-
-
 # Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
         
-    #data_activo = data_activo.set_index('datetime')
 
+    # Mostrar grafico
     with st.container():
         chart_placeholder = st.empty()
         fig = go.Figure()   
@@ -117,14 +102,21 @@ if (len(data_activo)) > 0:
             yaxis={'side': 'right'},
             height = 800,
             margin=dict(l=0, r=0, t=0, b=0,pad=0),
-            xaxis_rangeslider_visible=False)     
+            xaxis_rangeslider_visible=False)
+        fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
+        fig.update_xaxes(automargin='left+right')
+        #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]     
         configs = dict({'scrollZoom': False,'displaylogo': False} )
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+        fig.add_trace(go.Histogram(x=data_activo["volume"]))
         chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)
+        
+        # Actualizar grafico
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
+            fig.update_traces(go.Histogram(x=data_activo["volume"]))
             chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)
                 
             time.sleep(5)      
@@ -132,29 +124,3 @@ if (len(data_activo)) > 0:
 else:
     st.info("No se encontraron datos disponibles para este activo y fechas")
     
-    fig = go.FigureWidget()
-    fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
-    #fig.add_trace(go.Histogram(x=data_activo[7]))
-    fig.update_layout(#xaxis_title='Tiempo',
-            #xaxis_title='Tiempo',
-            #xaxis={'side': 'top'},
-            #yaxis_title='Precio',
-            yaxis={'side': 'right'},
-            height = 800,
-            margin=dict(l=0, r=0, t=0, b=0,pad=0),
-            xaxis_rangeslider_visible=False)
-    #fig.update_yaxes(automargin='left+top+right',ticklabelposition="inside")
-    #fig.update_xaxes(automargin='left+right')
-    #'modeBarButtonsToAdd':['drawline','drawopenpath','drawcircle','drawrect','eraseshape',]
-    configs = dict({'scrollZoom': False,'displaylogo': False} )
-    st.plotly_chart(fig,use_container_width=True,config=configs)
-    time.sleep(7)
-    nuevos_datos = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
-    nuevos_datos['datetime'] = pd.to_datetime(nuevos_datos['_id'], unit='ms')
-
-    fig.data[0].x = nuevos_datos["datetime"]
-    fig.data[0].open = nuevos_datos["open"]
-    fig.data[0].high = nuevos_datos["high"]
-    fig.data[0].low = nuevos_datos["low"]
-    fig.data[0].close = nuevos_datos["close"]
-    fig.update_traces()
