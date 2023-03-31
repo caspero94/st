@@ -6,14 +6,17 @@ import datetime
 from functions import get_mongo_db
 import time
 import requests
+from pytz import timezone
 
-# Hacemos una petición a worldtimeapi.org para obtener la hora actual
-response = requests.get('http://worldtimeapi.org/api/ip')
-time_data = response.json()
+# Obtener la dirección IP del cliente
+ip = requests.get('https://api.ipify.org').text
 
-# Extraemos la fecha y hora actual de los datos de la respuesta
-datetime_str = time_data['datetime']
-datetime_obj = datetime.strptime(datetime_str, '%Y-%m-%dT%H:%M:%S.%f%z')
+# Obtener la información de ubicación y zona horaria utilizando la API ipapi
+response = requests.get(f'http://ipapi.co/{ip}/json/')
+location_data = response.json()
+
+# Obtener la zona horaria del cliente
+client_tz = timezone(location_data['timezone'])
 
 
 #setting config pagina streamlit
@@ -91,7 +94,7 @@ collection = db[select_col]
 # Realiza una consulta a la colección filtrada por fechas
 data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
 #data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms') + (datetime_obj - datetime.now())
+data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms').dt.tz_localize('UTC').dt.tz_convert(client_tz)
 
 # Comprobamos que data_activo contiene datos para plot y sino enviamos mensaje error
 if (len(data_activo)) > 0:
@@ -115,7 +118,6 @@ if (len(data_activo)) > 0:
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
             #data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
-            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms') + (datetime_obj - datetime.now())
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)  
             time.sleep(6)      
