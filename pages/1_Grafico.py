@@ -95,7 +95,7 @@ if (len(data_activo)) > 0:
             height = 800,
             margin=dict(l=0, r=0, t=0, b=0,pad=0),
             xaxis_rangeslider_visible=False)
-        configs = dict({'scrollZoom': True,'displaylogo': False} )
+        configs = dict({'scrollZoom': False,'staticPlot': True,'displaylogo': False} )
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo["volume"]))
         chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)
