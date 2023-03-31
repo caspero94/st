@@ -94,7 +94,7 @@ if (len(data_activo)) > 0:
     # Mostrar grafico
     with st.container():
         chart_placeholder = st.empty()
-        fig = go.Figure()   
+        fig = go.FigureWidget()
         fig.update_layout(
             yaxis={'side': 'right'},
             height = 800,
