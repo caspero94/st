@@ -70,10 +70,6 @@ with st.sidebar:
         todate = st.date_input("To date:", datetime.date.today(),label_visibility="collapsed")
         to_datetime = datetime.datetime.combine(todate, datetime.datetime.max.time())
         to_datetime = int(to_datetime.timestamp() * 1000)
-    with st.empty():
-            if st.button('Actualizar datos', use_container_width=True):
-                st.write('refresh')
-                #save_candles(symbol = par, timeframe = timeframe)
 
 # Conecta a la base de datos
 db = get_mongo_db()
