@@ -97,7 +97,7 @@ if (len(data_activo)) > 0:
             xaxis_rangeslider_visible=False)
         configs = dict({
             'scrollZoom':False,
-            'displayModeBar':True,
+            'displayModeBar':False,
             'displaylogo':False})
         fig.add_trace(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
         #fig.add_trace(go.Histogram(x=data_activo["volume"]))
