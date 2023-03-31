@@ -16,7 +16,7 @@ timezone_data = response.json()
 client_tz = timezone(timezone_data['timezone'])
 
 # Calcular la diferencia horaria entre la zona horaria del cliente y UTC
-client_offset = client_tz.utcoffset(datetime.utcnow())
+client_offset = client_tz.utcoffset(datetime.now(utc))
 
 
 #setting config pagina streamlit
