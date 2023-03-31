@@ -117,6 +117,7 @@ if (len(data_activo)) > 0:
         # Actualizar grafico
         while True:
             data_activo = pd.DataFrame(list(collection.find({'_id': {'$gte': from_datetime, '$lte': to_datetime}})))
+            data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms').dt.tz_localize('UTC').dt.tz_convert(client_tz)
             #data_activo['datetime'] = pd.to_datetime(data_activo['_id'], unit='ms')
             fig.update_traces(go.Candlestick(x=data_activo["datetime"], open=data_activo["open"], high=data_activo["high"], low=data_activo["low"], close=data_activo["close"]))
             chart_placeholder.plotly_chart(fig,use_container_width=True,config=configs)  
